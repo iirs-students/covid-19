@@ -23,14 +23,14 @@
 	</style>
 <body>
   <div id="map"></div>
-  <script type="text/javascript" src="aoi.js"></script>
+  <script type="text/javascript" src="indiastates.js"></script>
 
   <script type="text/javascript">
-  var map = L.map('map').setView([12.9899, 77.6280], 12);
+  var map = L.map('map').setView([21.9899, 76.6280], 5);
 
    var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 		attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-	});
+	}).addTo(map);
 
   var Satellite = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
         maxZoom: 18,
@@ -38,12 +38,12 @@
         accessToken: 'pk.eyJ1IjoidmVua2FubmEiLCJhIjoiY2oxa2w0Y3J2MDF2dTJ3cGJzbWhrYTh3ayJ9.BA-1iL9BvWyVhuAZR75mgQ'
     });
 
-  var Drive =  L.tileLayer('https://api.mapbox.com/styles/v1/venkanna/cjc0sxuts2otw2rpjpljbfhce/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoidmVua2FubmEiLCJhIjoiY2oxa2w0Y3J2MDF2dTJ3cGJzbWhrYTh3ayJ9.BA-1iL9BvWyVhuAZR75mgQ', {
-maxZoom: 18,
-attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-}).addTo(map);
+//   var Drive =  L.tileLayer('https://api.mapbox.com/styles/v1/venkanna/cjc0sxuts2otw2rpjpljbfhce/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoidmVua2FubmEiLCJhIjoiY2oxa2w0Y3J2MDF2dTJ3cGJzbWhrYTh3ayJ9.BA-1iL9BvWyVhuAZR75mgQ', {
+// maxZoom: 18,
+// attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+// '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+// 'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+// }).addTo(map);
 
 
 function getColor(d) {
@@ -78,8 +78,8 @@ info.onAdd = function (map) {
 
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
-    this._div.innerHTML = '<h4>Mapping Areas in Bangalore</h4>' +  (props ?
-        '<b> AOI </b>' + props.name + '</br>' + '<b> Area </b>' + props.Area + ' km<sup>2</sup>' + '</br>' + '<b> Team </b>' + props.Team
+    this._div.innerHTML = '<h4>COVID-19 Visualization in India</h4>' +  (props ?
+        '<b> State Name </b>' + props.ST_NAME + '</br>' + '<b> Cases </b>' + props.cases  + '</br>' + '<b> Deaths </b>' + props.deaths
         : 'Hover over a AOI');
 };
 
@@ -127,8 +127,7 @@ var geojson = L.geoJSON(aoi, {
 
 var baseMaps ={
     "OpenStreetMap":osm,
-    "Mapbox Satellite": Satellite,
-    "Mapbox Drives": Drive
+    "Mapbox Satellite": Satellite
   };
   var overlayMaps ={
     "Area Boundaries":geojson
