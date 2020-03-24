@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coronavirus India Dashboard</title>
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+     crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+     crossorigin=""></script>
+    <style>
+        .mapdiv {
+          height: 50%;
+          width: 70%;
+          display:block;
+          position:absolute;
+          margin-top: 10px;
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+           }
+                * {
+          box-sizing: border-box;
+        }
+
+        body {
+          font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Float four columns side by side */
+        .column {
+          float: left;
+          width: 25%;
+          padding: 0 10px;
+        }
+
+        /* Remove extra left and right margins, due to padding */
+        .row {margin: 0 -5px;}
+
+        /* Clear floats after the columns */
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+
+        /* Responsive columns */
+        @media screen and (max-width: 600px) {
+          .mapdiv {
+            height: 100%;
+            width: 100%;
+            display:block;
+            position:absolute;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+           }
+          .column {
+            width: 100%;
+            display: block;
+            margin-bottom: 20px;
+          }
+        }
+
+        /* Style the counter cards */
+        .card {
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+          padding: 16px;
+          text-align: center;
+          background-color: #f1f1f1;
+        }
+        #menu{
+            width:100%;
+            height:44px;
+            background-color : black;
+        }
+        #menutext{
+            color : white;
+            text-align: center;
+            font-size: 25px;
+            font-family: "Segoe UI",Arial,sans-serif;
+            margin: auto;
+        }
+    </style>
+</head>
+<body style="margin:0px;">
+<div id="menu"><p id="menutext" style="color:white; text-align:center;"><b>Corona Virus Status in India</b></p></div>
+<div class="row">
+    <p style="text-align:center;"> Data as on 24th March 2020<p>
+  <div class="column">
+    <div class="card">
+      <h3>Active Cases (Global)</h3>
+      <p>Total</p>
+      <p>Last 24hrs</p>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <h3>Deaths (Global)</h3>
+      <p>Total</p>
+      <p>Last 24hrs</p>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <h3>Active Cases (India)</h3>
+      <p>Total</p>
+      <p>Last 24hrs</p>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <h3>Deaths (India)</h3>
+      <p>Total</p>
+      <p>Last 24hrs</p>
+    </div>
+  </div>
+</div>
+<div class="row2" style="width:100%; height:100%">
+  <div class = "mapdiv" id="map">
+    <script>
+      var map = L.map('map').setView([21.9899, 76.6280], 5);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar', attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'}).addTo(map);
+    </script>
+  </div>
+</div>
+</body>
+</html>
+
