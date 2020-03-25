@@ -11,7 +11,7 @@
      crossorigin=""></script>
     <style>
         .mapdiv {
-          height: 50%;
+          height: 70%;
           width: 70%;
           display:block;
           position:absolute;
@@ -24,6 +24,34 @@
 
         body {
           font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Attribute information at top right cornar of the map */
+        .info {
+        padding: 6px 8px;
+        font: 14px/16px Arial, Helvetica, sans-serif;
+        background: white;
+        background: rgba(255,255,255,0.8);
+        box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        border-radius: 5px;
+        }
+
+        .info h4 {
+            margin: 0 0 5px;
+            color: #777;
+        }
+
+        /* Legend at bottom right corner */
+        .legend {
+            line-height: 18px;
+            color: #555;
+        }
+        .legend i {
+            width: 18px;
+            height: 18px;
+            float: left;
+            margin-right: 8px;
+            opacity: 0.7;
         }
 
         /* Float four columns side by side */
@@ -118,12 +146,111 @@
 </div>
 <div class="row2" style="width:100%; height:100%">
   <div class = "mapdiv" id="map">
+    <script type="text/javascript" src="indiastates.js"></script>
     <script>
       var map = L.map('map').setView([21.9899, 76.6280], 5);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar', attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'}).addTo(map);
+      var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar', attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'}).addTo(map);
+
+      // https://leafletjs.com/examples/choropleth/
+      // Choropleth map style
+      function getColor(d) {
+        return d > 30 ? '#800026' :
+            d > 25  ? '#BD0026' :
+            d > 20  ? '#E31A1C' :
+            d > 15  ? '#FC4E2A' :
+            d > 10   ? '#FD8D3C' :
+            d > 5   ? '#FEB24C' :
+            d == null   ? '#FED976' :
+                  '#FFEDA0';
+      }
+      function style(feature) {
+        return {
+          weight: 2,
+          opacity: 1,
+          color: 'blue',
+          fillColor: getColor(feature.properties["24 March"])
+        };
+      }
+
+      // Visualizing attributes on map right top corner
+      var info = L.control();
+      info.onAdd = function (map) {
+          this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+          this.update();
+          return this._div;
+      };
+      info.update = function (props) {
+          this._div.innerHTML = '<h4>COVID-19 Visualization in India</h4>' +  (props ?
+              '<b> State Name </b>' + props["State"] + '</br>' + '<b> Cases </b>' + props["24 March"]  + '</br>' + '<b> Deaths </b>' + props.deaths
+              : 'Hover over a AOI');
+      };
+      info.addTo(map);
+
+      // Highlighting features
+      function highlightFeature(e) {
+        var layer = e.target;
+        layer.setStyle({
+            weight: 5,
+            color: 'green',
+            dashArray: '',
+            fillOpacity: 0
+        });
+        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+            layer.bringToFront();
+            info.update(layer.feature.properties);
+        }
+      }
+
+      function resetHighlight(e) {
+        geojson.resetStyle(e.target);
+        info.update();
+      }
+
+      function zoomToFeature(e) {
+        map.fitBounds(e.target.getBounds());
+      }
+
+      function onEachFeature(feature, layer) {
+        layer.on({
+            mouseover: highlightFeature,
+            mouseout: resetHighlight,
+            click: zoomToFeature
+        });
+      }
+
+      var geojson = L.geoJSON(aoi, {
+        style:style,
+        onEachFeature: onEachFeature
+      }).addTo(map);
+
+      //Layer group
+      var baseMaps ={
+          "OpenStreetMap":osm
+        };
+      var overlayMaps ={
+          "Area Boundaries":geojson
+        };
+      L.control.layers(baseMaps,overlayMaps).addTo(map);
+      var legend = L.control({position: 'bottomright'});
+
+      // Legend
+      legend.onAdd = function (map) {
+            var div = L.DomUtil.create('div', 'info legend'),
+                grades = [null, 5, 10, 15, 20, 25, 30, 35],
+                labels = [];
+            // loop through our density intervals and generate a label with a colored square for each interval
+            for (var i = 0; i < grades.length; i++) {
+                div.innerHTML +=
+                    '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+                    grades[i] + (grades[i + 1] ? '&ndash;'+grades[i + 1] + '<br>': '+');
+            }
+
+            return div;
+        };
+
+        legend.addTo(map);
     </script>
   </div>
 </div>
 </body>
 </html>
-
