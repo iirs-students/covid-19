@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>Coronavirus India Dashboard</title>
       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -15,7 +16,7 @@
           width: 70%;
           display:block;
           position:absolute;
-          margin-top: 10px;
+          margin-top: 15px;
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
            }
                 * {
@@ -62,13 +63,15 @@
         }
 		
 		.chart_div {
-          float: left;
+          float: right;
           width: 30%;
-          padding: 0 10px;
+          padding: 15px;
+		  padding-right: 5px;
         }
 
         /* Remove extra left and right margins, due to padding */
-        .row {margin: 0 -5px;}
+        .row {margin: 0 -5px;
+}
 
         /* Clear floats after the columns */
         .row:after {
@@ -78,24 +81,24 @@
         }
 
         /* Responsive columns */
-        @media screen and (max-width: 860px) {
+        @media screen and (max-width: 800px) {
 			.chart_div {
 			  float: left;
 			  width: 100%;
 			  padding: 0 10px;
 			}
-          .mapdiv {
-            height: 100%;
-            width: 100%;
-            display:block;
-            position:absolute;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-           }
-          .column {
-            width: 100%;
-            display: block;
-            margin-bottom: 20px;
-          }
+			.mapdiv {
+				height: 100%;
+				width: 100%;
+				display:block;
+				position:absolute;
+				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+			   }
+			  .column {
+				width: 50%;
+				display: block;
+				margin-bottom: 20px;
+			  }
         }
 
         /* Style the counter cards */
@@ -155,7 +158,7 @@
     </div>
   </div>
 </div>
-<div class="row2" style="width:100%; height:100%">
+<div class="row" style="width:100%; height:100%">
   <div class = "mapdiv" id="map">
     <script type="text/javascript" src="indiastates.js"></script>
     <script>
