@@ -60,6 +60,12 @@
           width: 25%;
           padding: 0 10px;
         }
+		
+		.chart_div {
+          float: left;
+          width: 30%;
+          padding: 0 10px;
+        }
 
         /* Remove extra left and right margins, due to padding */
         .row {margin: 0 -5px;}
@@ -72,7 +78,12 @@
         }
 
         /* Responsive columns */
-        @media screen and (max-width: 600px) {
+        @media screen and (max-width: 860px) {
+			.chart_div {
+			  float: left;
+			  width: 100%;
+			  padding: 0 10px;
+			}
           .mapdiv {
             height: 100%;
             width: 100%;
@@ -250,6 +261,13 @@
 
         legend.addTo(map);
     </script>
+  </div>
+  <div class="chart_div">
+    <div class="card">
+      <h3>Deaths (India)</h3>
+      <p>Total</p>
+      <p>Last 24hrs</p>
+    </div>
   </div>
 </div>
 </body>
