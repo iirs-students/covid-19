@@ -259,7 +259,7 @@
 
       // Highlighting features
       function highlightFeature(e) {
-		
+		geojson.resetStyle();
         var layer = e.target;
         layer.setStyle({
             weight: 2,
@@ -285,7 +285,6 @@
       function onEachFeature(feature, layer) {
         layer.on({
             click: highlightFeature,
-            mouseout: resetHighlight,
             dblclick: zoomToFeature
         });
       }
