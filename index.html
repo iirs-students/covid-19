@@ -114,7 +114,7 @@
         /* Style the counter cards */
         .card {
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-          padding: 16px;
+          padding-top: 5px;
           text-align: center;
           background-color: #ffffff;
         }
@@ -231,8 +231,8 @@
       };
       info.update = function (props) {
           this._div.innerHTML = '<h4>COVID-19 Visualization in India</h4>' +  (props ?
-              '<b> State Name </b>' + props["State"] + '</br>' + '<b> Active Cases </b>' + props["24 March"]  + '</br>' + '<b> Deaths </b>' + props.deaths
-              : 'Hover over a AOI');
+              '<b> State Name </b>' + props["State"] + '</br>' + '<b> Active Cases </b>' + props["Active Cases"]  + '</br>' + '<b> Foriegn Cases </b>' + props["Foriegn Cases"] +'</br>' + '<b> Deaths </b>' + props["Deaths"] + '</br>' + '<b> Cured </b>' + props["Cured"] 
+              : 'Click on a state');
       };
       info.addTo(map);
 
