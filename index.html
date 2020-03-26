@@ -218,7 +218,7 @@
           weight: 2,
           opacity: 1,
           color: 'blue',
-          fillColor: getColor(feature.properties["24 March"])
+          fillColor: getColor(feature.properties["Active Cases"])
         };
       }
 
@@ -238,7 +238,7 @@
 
       // Highlighting features
       function highlightFeature(e) {
-		resetHighlight();
+		
         var layer = e.target;
         layer.setStyle({
             weight: 5,
