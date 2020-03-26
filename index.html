@@ -12,6 +12,7 @@
      crossorigin=""></script>
 	 <script src="https://cdn.plot.ly/plotly-1.2.0.min.js"></script>
     <style>
+		
         .mapdiv {
           height: 70%;
           width: 70%;
@@ -33,7 +34,6 @@
         padding: 6px 8px;
         font: 14px/16px Arial, Helvetica, sans-serif;
         background: white;
-        background: rgba(255,255,255,0.8);
         box-shadow: 0 0 15px rgba(0,0,0,0.2);
         border-radius: 5px;
         }
@@ -83,6 +83,8 @@
 
         /* Responsive columns */
         @media screen and (max-width: 800px) {
+			.svg-container{
+		margin:auto;}
 			.chart_div {
 			  float: left;
 			  width: 100%;
@@ -110,7 +112,7 @@
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
           padding: 16px;
           text-align: center;
-          background-color: #f1f1f1;
+          background-color: #ffffff;
         }
         #menu{
             width:100%;
@@ -314,7 +316,6 @@ makeplot();
 	
 var allStates = unpack(rows, 'State'),
     allDates = [],
-    allCount = unpack(rows, 'gdpPercap'),
     currentStateCount = [];
 
 	
@@ -323,10 +324,10 @@ var allStates = unpack(rows, 'State'),
 	}
 //window.alert(allDates);
   
-  function getStateData(chosenCountry) {
+  function getStateData(chosenState) {
     currentStateCount = [];
     for (var i = 0 ; i < allStates.length ; i++){
-      if ( allStates[i] === chosenCountry ) {
+      if ( allStates[i] === chosenState ) {
 		for (var j = 0; j<allDates.length; j++){
 		currentStateCount.push(rows[i][headerNames[j]]);
 		//window.alert(currentStateCount)
@@ -339,8 +340,8 @@ var allStates = unpack(rows, 'State'),
 // Default Country Data
 setBubblePlot('Maharashtra');
   
-function setBubblePlot(chosenCountry) {
-    getStateData(chosenCountry);  
+function setBubblePlot(chosenState) {
+    getStateData(chosenState);  
 
     var trace1 = {
       x: allDates,
@@ -355,7 +356,7 @@ function setBubblePlot(chosenCountry) {
     var data = [trace1];
 
     var layout = {
-      title: 'Active Cases in<br>'+ chosenCountry
+      title: 'Active Cases in<br>'+ chosenState
     };
 
     Plotly.newPlot('plotdiv', data, layout, {showSendToCloud: true});
