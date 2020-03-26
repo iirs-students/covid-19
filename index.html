@@ -238,6 +238,7 @@
 
       // Highlighting features
       function highlightFeature(e) {
+		resetHighlight();
         var layer = e.target;
         layer.setStyle({
             weight: 5,
@@ -252,7 +253,6 @@
       }
 
       function resetHighlight(e) {
-		resetHighlight
         geojson.resetStyle(e.target);
         info.update();
       }
