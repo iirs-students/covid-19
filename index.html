@@ -18,7 +18,7 @@
 			width:50%;
 			display:inline-block;}
         .mapdiv {
-          height: 70%;
+          height: 800px;
           width: 70%;
           display:block;
           position:absolute;
@@ -76,6 +76,7 @@
 
         /* Remove extra left and right margins, due to padding */
         .row {margin: 0 -5px;
+		margin-top: 15px;
 }
 
         /* Clear floats after the columns */
@@ -98,7 +99,6 @@
 			}
 			.mapdiv {
 				width: 100%;
-				height: 500px;
 				display:block;
 				position:relative;
 				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -133,28 +133,12 @@
     </style>
 </head>
 <body style="margin:0px;">
-<div id="menu"><p id="menutext" style="color:white; text-align:center;"><b>Corona Virus Status in India</b></p></div>
+<div id="menu"><p id="menutext" style="color:white; text-align:Left; display:inline; padding-left:10px;"><img style="width:21px; margin-bottom:-5px;" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPHBhdGggc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIGQ9Ik01MTIsNDAwLjE0NGMtMTcwLjY2Nyw2OS4xODktMzQxLjMzMy02OS4xODktNTEyLDBjMC05Ni4wOTYsMC0xOTIuMTkzLDAtMjg4LjI4OCAgYzE3MC42NjctNjkuMTg5LDM0MS4zMzMsNjkuMTg5LDUxMiwwQzUxMiwyMDcuOTUyLDUxMiwzMDQuMDQ4LDUxMiw0MDAuMTQ0eiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRjRDNjUzOyIgZD0iTTAsMjA3Ljk1MmMxNzAuNjY3LTY5LjE4OSwzNDEuMzMzLDY5LjE4OSw1MTIsMHYtOTYuMDk2Yy0xNzAuNjY3LDY5LjE4OS0zNDEuMzMzLTY5LjE4OS01MTIsMCIvPgo8cGF0aCBzdHlsZT0iZmlsbDojODdFODdDOyIgZD0iTTAsNDAwLjE0NGMxNzAuNjY3LTY5LjE4OSwzNDEuMzMzLDY5LjE4OSw1MTIsMHYtOTYuMDk2Yy0xNzAuNjY3LDY5LjE4OS0zNDEuMzMzLTY5LjE4OS01MTIsMCIvPgo8Zz4KCTxwYXRoIHN0eWxlPSJmaWxsOiM1M0JFRjQ7IiBkPSJNMjUzLjY5NCwyMjkuMTQxYzEuMTk1LDQuMDkzLDEuODE0LDguMTg0LDIuMjU5LDEyLjI3NmMwLjQyMyw0LjA5MywwLjYxOSw4LjE4NCwwLjYyMywxMi4yNzYgICBjMC4wMDUsNC4wOTMtMC4xOTMsOC4xODQtMC42MTUsMTIuMjc2Yy0wLjQ0NCw0LjA5My0xLjA2Niw4LjE4NC0yLjI2NywxMi4yNzZjLTEuMjAyLTQuMDkzLTEuODIzLTguMTg0LTIuMjY3LTEyLjI3NiAgIGMtMC40MjItNC4wOTMtMC42MTktOC4xODQtMC42MTYtMTIuMjc2YzAuMDAzLTQuMDkzLDAuMjAxLTguMTg0LDAuNjIzLTEyLjI3NkMyNTEuODgsMjM3LjMyNSwyNTIuNDk5LDIzMy4yMzMsMjUzLjY5NCwyMjkuMTQxeiIvPgoJPHBhdGggc3R5bGU9ImZpbGw6IzUzQkVGNDsiIGQ9Ik0yNzEuMDU2LDIzNi4zMzJjLTIuMDQ5LDMuNzM5LTQuNTA1LDcuMDY5LTcuMDg0LDEwLjI3OGMtMi41OTUsMy4xOTMtNS4zNDksNi4yMjUtOC4yNCw5LjEyMSAgIGMtMi44OSwyLjg5Ny01LjkyNCw1LjY1LTkuMTE2LDguMjQ2Yy0zLjIwNywyLjU4LTYuNTQxLDUuMDM0LTEwLjI4NCw3LjA3OGMyLjA0NS0zLjc0Myw0LjQ5OC03LjA3Niw3LjA3OC0xMC4yODQgICBjMi41OTUtMy4xOTIsNS4zNDgtNi4yMjYsOC4yNDYtOS4xMTZjMi44OTYtMi44OTEsNS45MjgtNS42NDYsOS4xMjEtOC4yNEMyNjMuOTg2LDI0MC44MzcsMjY3LjMxNywyMzguMzgxLDI3MS4wNTYsMjM2LjMzMnoiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiM1M0JFRjQ7IiBkPSJNMjc4LjI0NywyNTMuNjk0Yy00LjA5MywxLjE5NS04LjE4NCwxLjgxNC0xMi4yNzYsMi4yNTljLTQuMDkzLDAuNDIzLTguMTg0LDAuNjE5LTEyLjI3NiwwLjYyMyAgIGMtNC4wOTMsMC4wMDUtOC4xODQtMC4xOTMtMTIuMjc2LTAuNjE2Yy00LjA5My0wLjQ0NC04LjE4NC0xLjA2Ni0xMi4yNzYtMi4yNjdjNC4wOTMtMS4yMDIsOC4xODQtMS44MjMsMTIuMjc2LTIuMjY3ICAgYzQuMDkzLTAuNDIyLDguMTg0LTAuNjE5LDEyLjI3Ni0wLjYxNWM0LjA5MywwLjAwMyw4LjE4NCwwLjIwMSwxMi4yNzYsMC42MjNDMjcwLjA2MywyNTEuODgxLDI3NC4xNTQsMjUyLjQ5OSwyNzguMjQ3LDI1My42OTR6Ii8+Cgk8cGF0aCBzdHlsZT0iZmlsbDojNTNCRUY0OyIgZD0iTTI3MS4wNTYsMjcxLjA1NmMtMy43MzktMi4wNDktNy4wNjktNC41MDUtMTAuMjc4LTcuMDg0Yy0zLjE5My0yLjU5NS02LjIyNS01LjM0OS05LjEyMS04LjI0ICAgYy0yLjg5Ny0yLjg5LTUuNjUtNS45MjQtOC4yNDYtOS4xMTZjLTIuNTgtMy4yMDctNS4wMzQtNi41NDEtNy4wNzgtMTAuMjg0YzMuNzQzLDIuMDQzLDcuMDc2LDQuNDk4LDEwLjI4NCw3LjA3OCAgIGMzLjE5MiwyLjU5NSw2LjIyNiw1LjM0OSw5LjExNiw4LjI0NmMyLjg5MSwyLjg5Niw1LjY0Niw1LjkyOCw4LjI0LDkuMTIxQzI2Ni41NSwyNjMuOTg2LDI2OS4wMDYsMjY3LjMxNywyNzEuMDU2LDI3MS4wNTZ6Ii8+Cgk8cGF0aCBzdHlsZT0iZmlsbDojNTNCRUY0OyIgZD0iTTI1My42OTQsMjkzLjQ4MWMtMjEuOTM5LDAtMzkuNzg3LTE3Ljg0OS0zOS43ODctMzkuNzg3YzAtMjEuOTM5LDE3Ljg0OS0zOS43ODcsMzkuNzg3LTM5Ljc4NyAgIGMyMS45MzksMCwzOS43ODcsMTcuODQ5LDM5Ljc4NywzOS43ODdDMjkzLjQ4MSwyNzUuNjMyLDI3NS42MzIsMjkzLjQ4MSwyNTMuNjk0LDI5My40ODF6IE0yNTMuNjk0LDIxOS42NzIgICBjLTE4Ljc1OSwwLTM0LjAyMSwxNS4yNjItMzQuMDIxLDM0LjAyMWMwLDE4Ljc2LDE1LjI2MiwzNC4wMjEsMzQuMDIxLDM0LjAyMWMxOC43NiwwLDM0LjAyMS0xNS4yNjIsMzQuMDIxLTM0LjAyMSAgIEMyODcuNzE1LDIzNC45MzQsMjcyLjQ1MywyMTkuNjcyLDI1My42OTQsMjE5LjY3MnoiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" /><b> Corona Virus Status in India</b></p><p style="float:right; display:inline; color:white; padding-right:10px;" id="last_data_date">Data as on <p></div>
 <div class="row">
-    <p style="text-align:center;" id="last_data_date">Data as on <p>
   <div class="column">
     <div class="card">
-      <h3>Active Cases <img style="width:21px; margin-bottom:-5px;" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMS45OTkgNTExLjk5OSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTExLjk5OSA1MTEuOTk5OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPGc+Cgk8cGF0aCBzdHlsZT0iZmlsbDojMDNBQTZGOyIgZD0iTTQ0MS4zNzQsNzkuNTE5bC0yNi40ODUsMTcuNjU2bC00NC4xNDEtOC44MjhsLTI2LjQ4NS04LjgyOGwtMzUuMzEzLDguODI4bC0yNi40ODUtOC44MjggICBsMTcuNjU2LTM1LjMxM2gzNS4zMTNsMzQuNjA3LTE3LjMwM0MzOTYuNzMsNDAuMTAxLDQyMC44NzUsNTcuOTE2LDQ0MS4zNzQsNzkuNTE5eiIvPgoJPHBhdGggc3R5bGU9ImZpbGw6IzAzQUE2RjsiIGQ9Ik0yMzguMzI1LDQ0LjIwNmwtOC44MjgsMjYuNDg1bC0yNi40ODUsOC44MjhsLTI2LjQ4NSw0NC4xNDFsLTQ0LjE0MSwyNi40ODVsLTYxLjc5Nyw4LjgyOHYyNi40ODUgICBsMTcuNjU2LDE3LjY1NnYzNS4zMTNMNjEuNzYyLDIyMC43N2wtMjYuNDg1LTE3LjY1NmwtMTUuMzYxLTQ2LjE3MUM0Ni4zNTYsOTMuOTM1LDk2Ljg5OCw0NC4xMjYsMTYwLjI4NCwxOC42MDRsMjUuMDcyLDE2Ljc3NCAgIEwyMzguMzI1LDQ0LjIwNnoiLz4KCTxwb2x5Z29uIHN0eWxlPSJmaWxsOiMwM0FBNkY7IiBwb2ludHM9IjI1NS45ODIsMjkxLjM5NSAyNDcuMTU0LDMzNS41MzYgMjExLjg0MSwzNzAuODQ5IDIxMS44NDEsMzk3LjMzNCAxNzYuNTI4LDQyMy44MTggICAgMTc2LjUyOCw0NjcuOTU5IDE1MC4wNDQsNDU5LjEzMSAxMzIuMzg3LDQxNC45OSAxMzIuMzg3LDMyNi43MDggODguMjQ2LDMxNy44OCA3MC41OSwyODIuNTY3IDcwLjU5LDI1Ni4wODIgODguMjQ2LDIzOC40MjYgICAgMTE0LjczMSwyMTEuOTQxIDEzMi4zODcsMjQ3LjI1NCAxOTQuMTg0LDI0Ny4yNTQgMjIwLjY2OSwyOTEuMzk1ICAiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiMwM0FBNkY7IiBkPSJNNDc5LjMzNSwxMzAuOTg3YzQ4LjE5Myw4NS45NzgsNDIuNzAyLDE5MS45OTYtMTQuMTI1LDI3Mi41MjZsLTIzLjgzNi0yMy44MzZ2LTM1LjMxMyAgIGwtMTcuNjU2LTM1LjMxM2wtMTcuNjU2LTM1LjMxM3YtMzUuMzEzbC0yNi40ODUtMTcuNjU2bC0zNS4zMTMsOC44MjhsLTYxLjc5Ny0yNi40ODVsLTguODI4LTYxLjc5N2wyNi40ODUtMjYuNDg1aDUyLjk2OSAgIGwxNy42NTYsMjYuNDg1bDUyLjk2OSw4LjgyOGw1Mi45NjktMTcuNjU2TDQ3OS4zMzUsMTMwLjk4N3oiLz4KPC9nPgo8cGF0aCBzdHlsZT0iZmlsbDojODZEQUYxOyIgZD0iTTMwOC45NTEsODguMzQ3bDM1LjMxMy04LjgyOGwyNi40ODUsOC44MjhsNDQuMTQxLDguODI4bDI2LjQ4NS0xNy42NTYgIGMxNC43ODcsMTUuNDc2LDI3LjU0NCwzMi43NywzNy45NjEsNTEuNDY4bC0yLjY0OCwxLjUwMWwtNTIuOTY5LDE3LjY1NmwtNTIuOTY5LTguODI4bC0xNy42NTYtMjYuNDg1aC01Mi45NjlsLTI2LjQ4NSwyNi40ODUgIGw4LjgyOCw2MS43OTdsNjEuNzk3LDI2LjQ4NWwzNS4zMTMtOC44MjhsMjYuNDg1LDE3LjY1NnYzNS4zMTNsMTcuNjU2LDM1LjMxM2wxNy42NTYsMzUuMzEzdjM1LjMxM2wyMy44MzYsMjMuODM2ICBjLTgxLjUyOCwxMTUuNTI2LTI0MS4yNzUsMTQzLjA3OS0zNTYuNzkyLDYxLjU1QzEwLjMxMSwzOTUuODE1LTI2LjQ5NCwyNjcuNjkxLDE5LjkxNiwxNTYuOTQybDE1LjM2MSw0Ni4xNzFsMjYuNDg1LDE3LjY1NiAgbDI2LjQ4NSwxNy42NTZMNzAuNTksMjU2LjA4MnYyNi40ODVsMTcuNjU2LDM1LjMxM2w0NC4xNDEsOC44Mjh2ODguMjgybDE3LjY1Niw0NC4xNDFsMjYuNDg1LDguODI4di00NC4xNDFsMzUuMzEzLTI2LjQ4NXYtMjYuNDg1ICBsMzUuMzEzLTM1LjMxM2w4LjgyOC00NC4xNDFoLTM1LjMxM2wtMjYuNDg1LTQ0LjE0MWgtNjEuNzk3bC0xNy42NTYtMzUuMzEzbC0yNi40ODUsMjYuNDg1di0zNS4zMTNMNzAuNTksMTg1LjQ1N3YtMjYuNDg1ICBsNjEuNzk3LTguODI4bDQ0LjE0MS0yNi40ODVsMjYuNDg1LTQ0LjE0MWwyNi40ODUtOC44MjhsOC44MjgtMjYuNDg1bC01Mi45NjktOC44MjhsLTI1LjA3Mi0xNi43NzQgIGM2Ny44ODktMjcuMzQxLDE0NC4yMzUtMjQuMzIyLDIwOS43NTgsOC4yOTlsLTM0LjYwNywxNy4zMDNoLTM1LjMxM2wtMTcuNjU2LDM1LjMxM0wzMDguOTUxLDg4LjM0N3oiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" /></h3>
-      <p>Total</p>
-      <p>Last 24hrs</p>
-    </div>
-  </div>
-
-  <div class="column">
-    <div class="card">
-      <h3>Deaths <img style="width:21px; margin-bottom:-5px;" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMS45OTkgNTExLjk5OSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTExLjk5OSA1MTEuOTk5OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPGc+Cgk8cGF0aCBzdHlsZT0iZmlsbDojMDNBQTZGOyIgZD0iTTQ0MS4zNzQsNzkuNTE5bC0yNi40ODUsMTcuNjU2bC00NC4xNDEtOC44MjhsLTI2LjQ4NS04LjgyOGwtMzUuMzEzLDguODI4bC0yNi40ODUtOC44MjggICBsMTcuNjU2LTM1LjMxM2gzNS4zMTNsMzQuNjA3LTE3LjMwM0MzOTYuNzMsNDAuMTAxLDQyMC44NzUsNTcuOTE2LDQ0MS4zNzQsNzkuNTE5eiIvPgoJPHBhdGggc3R5bGU9ImZpbGw6IzAzQUE2RjsiIGQ9Ik0yMzguMzI1LDQ0LjIwNmwtOC44MjgsMjYuNDg1bC0yNi40ODUsOC44MjhsLTI2LjQ4NSw0NC4xNDFsLTQ0LjE0MSwyNi40ODVsLTYxLjc5Nyw4LjgyOHYyNi40ODUgICBsMTcuNjU2LDE3LjY1NnYzNS4zMTNMNjEuNzYyLDIyMC43N2wtMjYuNDg1LTE3LjY1NmwtMTUuMzYxLTQ2LjE3MUM0Ni4zNTYsOTMuOTM1LDk2Ljg5OCw0NC4xMjYsMTYwLjI4NCwxOC42MDRsMjUuMDcyLDE2Ljc3NCAgIEwyMzguMzI1LDQ0LjIwNnoiLz4KCTxwb2x5Z29uIHN0eWxlPSJmaWxsOiMwM0FBNkY7IiBwb2ludHM9IjI1NS45ODIsMjkxLjM5NSAyNDcuMTU0LDMzNS41MzYgMjExLjg0MSwzNzAuODQ5IDIxMS44NDEsMzk3LjMzNCAxNzYuNTI4LDQyMy44MTggICAgMTc2LjUyOCw0NjcuOTU5IDE1MC4wNDQsNDU5LjEzMSAxMzIuMzg3LDQxNC45OSAxMzIuMzg3LDMyNi43MDggODguMjQ2LDMxNy44OCA3MC41OSwyODIuNTY3IDcwLjU5LDI1Ni4wODIgODguMjQ2LDIzOC40MjYgICAgMTE0LjczMSwyMTEuOTQxIDEzMi4zODcsMjQ3LjI1NCAxOTQuMTg0LDI0Ny4yNTQgMjIwLjY2OSwyOTEuMzk1ICAiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiMwM0FBNkY7IiBkPSJNNDc5LjMzNSwxMzAuOTg3YzQ4LjE5Myw4NS45NzgsNDIuNzAyLDE5MS45OTYtMTQuMTI1LDI3Mi41MjZsLTIzLjgzNi0yMy44MzZ2LTM1LjMxMyAgIGwtMTcuNjU2LTM1LjMxM2wtMTcuNjU2LTM1LjMxM3YtMzUuMzEzbC0yNi40ODUtMTcuNjU2bC0zNS4zMTMsOC44MjhsLTYxLjc5Ny0yNi40ODVsLTguODI4LTYxLjc5N2wyNi40ODUtMjYuNDg1aDUyLjk2OSAgIGwxNy42NTYsMjYuNDg1bDUyLjk2OSw4LjgyOGw1Mi45NjktMTcuNjU2TDQ3OS4zMzUsMTMwLjk4N3oiLz4KPC9nPgo8cGF0aCBzdHlsZT0iZmlsbDojODZEQUYxOyIgZD0iTTMwOC45NTEsODguMzQ3bDM1LjMxMy04LjgyOGwyNi40ODUsOC44MjhsNDQuMTQxLDguODI4bDI2LjQ4NS0xNy42NTYgIGMxNC43ODcsMTUuNDc2LDI3LjU0NCwzMi43NywzNy45NjEsNTEuNDY4bC0yLjY0OCwxLjUwMWwtNTIuOTY5LDE3LjY1NmwtNTIuOTY5LTguODI4bC0xNy42NTYtMjYuNDg1aC01Mi45NjlsLTI2LjQ4NSwyNi40ODUgIGw4LjgyOCw2MS43OTdsNjEuNzk3LDI2LjQ4NWwzNS4zMTMtOC44MjhsMjYuNDg1LDE3LjY1NnYzNS4zMTNsMTcuNjU2LDM1LjMxM2wxNy42NTYsMzUuMzEzdjM1LjMxM2wyMy44MzYsMjMuODM2ICBjLTgxLjUyOCwxMTUuNTI2LTI0MS4yNzUsMTQzLjA3OS0zNTYuNzkyLDYxLjU1QzEwLjMxMSwzOTUuODE1LTI2LjQ5NCwyNjcuNjkxLDE5LjkxNiwxNTYuOTQybDE1LjM2MSw0Ni4xNzFsMjYuNDg1LDE3LjY1NiAgbDI2LjQ4NSwxNy42NTZMNzAuNTksMjU2LjA4MnYyNi40ODVsMTcuNjU2LDM1LjMxM2w0NC4xNDEsOC44Mjh2ODguMjgybDE3LjY1Niw0NC4xNDFsMjYuNDg1LDguODI4di00NC4xNDFsMzUuMzEzLTI2LjQ4NXYtMjYuNDg1ICBsMzUuMzEzLTM1LjMxM2w4LjgyOC00NC4xNDFoLTM1LjMxM2wtMjYuNDg1LTQ0LjE0MWgtNjEuNzk3bC0xNy42NTYtMzUuMzEzbC0yNi40ODUsMjYuNDg1di0zNS4zMTNMNzAuNTksMTg1LjQ1N3YtMjYuNDg1ICBsNjEuNzk3LTguODI4bDQ0LjE0MS0yNi40ODVsMjYuNDg1LTQ0LjE0MWwyNi40ODUtOC44MjhsOC44MjgtMjYuNDg1bC01Mi45NjktOC44MjhsLTI1LjA3Mi0xNi43NzQgIGM2Ny44ODktMjcuMzQxLDE0NC4yMzUtMjQuMzIyLDIwOS43NTgsOC4yOTlsLTM0LjYwNywxNy4zMDNoLTM1LjMxM2wtMTcuNjU2LDM1LjMxM0wzMDguOTUxLDg4LjM0N3oiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" /></h3>
-      <p>Total</p>
-      <p>Last 24hrs</p>
-    </div>
-  </div>
-
-  <div class="column">
-    <div class="card">
-		<h3>Active Cases <img style="width:21px; margin-bottom:-5px;" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPHBhdGggc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIGQ9Ik01MTIsNDAwLjE0NGMtMTcwLjY2Nyw2OS4xODktMzQxLjMzMy02OS4xODktNTEyLDBjMC05Ni4wOTYsMC0xOTIuMTkzLDAtMjg4LjI4OCAgYzE3MC42NjctNjkuMTg5LDM0MS4zMzMsNjkuMTg5LDUxMiwwQzUxMiwyMDcuOTUyLDUxMiwzMDQuMDQ4LDUxMiw0MDAuMTQ0eiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRjRDNjUzOyIgZD0iTTAsMjA3Ljk1MmMxNzAuNjY3LTY5LjE4OSwzNDEuMzMzLDY5LjE4OSw1MTIsMHYtOTYuMDk2Yy0xNzAuNjY3LDY5LjE4OS0zNDEuMzMzLTY5LjE4OS01MTIsMCIvPgo8cGF0aCBzdHlsZT0iZmlsbDojODdFODdDOyIgZD0iTTAsNDAwLjE0NGMxNzAuNjY3LTY5LjE4OSwzNDEuMzMzLDY5LjE4OSw1MTIsMHYtOTYuMDk2Yy0xNzAuNjY3LDY5LjE4OS0zNDEuMzMzLTY5LjE4OS01MTIsMCIvPgo8Zz4KCTxwYXRoIHN0eWxlPSJmaWxsOiM1M0JFRjQ7IiBkPSJNMjUzLjY5NCwyMjkuMTQxYzEuMTk1LDQuMDkzLDEuODE0LDguMTg0LDIuMjU5LDEyLjI3NmMwLjQyMyw0LjA5MywwLjYxOSw4LjE4NCwwLjYyMywxMi4yNzYgICBjMC4wMDUsNC4wOTMtMC4xOTMsOC4xODQtMC42MTUsMTIuMjc2Yy0wLjQ0NCw0LjA5My0xLjA2Niw4LjE4NC0yLjI2NywxMi4yNzZjLTEuMjAyLTQuMDkzLTEuODIzLTguMTg0LTIuMjY3LTEyLjI3NiAgIGMtMC40MjItNC4wOTMtMC42MTktOC4xODQtMC42MTYtMTIuMjc2YzAuMDAzLTQuMDkzLDAuMjAxLTguMTg0LDAuNjIzLTEyLjI3NkMyNTEuODgsMjM3LjMyNSwyNTIuNDk5LDIzMy4yMzMsMjUzLjY5NCwyMjkuMTQxeiIvPgoJPHBhdGggc3R5bGU9ImZpbGw6IzUzQkVGNDsiIGQ9Ik0yNzEuMDU2LDIzNi4zMzJjLTIuMDQ5LDMuNzM5LTQuNTA1LDcuMDY5LTcuMDg0LDEwLjI3OGMtMi41OTUsMy4xOTMtNS4zNDksNi4yMjUtOC4yNCw5LjEyMSAgIGMtMi44OSwyLjg5Ny01LjkyNCw1LjY1LTkuMTE2LDguMjQ2Yy0zLjIwNywyLjU4LTYuNTQxLDUuMDM0LTEwLjI4NCw3LjA3OGMyLjA0NS0zLjc0Myw0LjQ5OC03LjA3Niw3LjA3OC0xMC4yODQgICBjMi41OTUtMy4xOTIsNS4zNDgtNi4yMjYsOC4yNDYtOS4xMTZjMi44OTYtMi44OTEsNS45MjgtNS42NDYsOS4xMjEtOC4yNEMyNjMuOTg2LDI0MC44MzcsMjY3LjMxNywyMzguMzgxLDI3MS4wNTYsMjM2LjMzMnoiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiM1M0JFRjQ7IiBkPSJNMjc4LjI0NywyNTMuNjk0Yy00LjA5MywxLjE5NS04LjE4NCwxLjgxNC0xMi4yNzYsMi4yNTljLTQuMDkzLDAuNDIzLTguMTg0LDAuNjE5LTEyLjI3NiwwLjYyMyAgIGMtNC4wOTMsMC4wMDUtOC4xODQtMC4xOTMtMTIuMjc2LTAuNjE2Yy00LjA5My0wLjQ0NC04LjE4NC0xLjA2Ni0xMi4yNzYtMi4yNjdjNC4wOTMtMS4yMDIsOC4xODQtMS44MjMsMTIuMjc2LTIuMjY3ICAgYzQuMDkzLTAuNDIyLDguMTg0LTAuNjE5LDEyLjI3Ni0wLjYxNWM0LjA5MywwLjAwMyw4LjE4NCwwLjIwMSwxMi4yNzYsMC42MjNDMjcwLjA2MywyNTEuODgxLDI3NC4xNTQsMjUyLjQ5OSwyNzguMjQ3LDI1My42OTR6Ii8+Cgk8cGF0aCBzdHlsZT0iZmlsbDojNTNCRUY0OyIgZD0iTTI3MS4wNTYsMjcxLjA1NmMtMy43MzktMi4wNDktNy4wNjktNC41MDUtMTAuMjc4LTcuMDg0Yy0zLjE5My0yLjU5NS02LjIyNS01LjM0OS05LjEyMS04LjI0ICAgYy0yLjg5Ny0yLjg5LTUuNjUtNS45MjQtOC4yNDYtOS4xMTZjLTIuNTgtMy4yMDctNS4wMzQtNi41NDEtNy4wNzgtMTAuMjg0YzMuNzQzLDIuMDQzLDcuMDc2LDQuNDk4LDEwLjI4NCw3LjA3OCAgIGMzLjE5MiwyLjU5NSw2LjIyNiw1LjM0OSw5LjExNiw4LjI0NmMyLjg5MSwyLjg5Niw1LjY0Niw1LjkyOCw4LjI0LDkuMTIxQzI2Ni41NSwyNjMuOTg2LDI2OS4wMDYsMjY3LjMxNywyNzEuMDU2LDI3MS4wNTZ6Ii8+Cgk8cGF0aCBzdHlsZT0iZmlsbDojNTNCRUY0OyIgZD0iTTI1My42OTQsMjkzLjQ4MWMtMjEuOTM5LDAtMzkuNzg3LTE3Ljg0OS0zOS43ODctMzkuNzg3YzAtMjEuOTM5LDE3Ljg0OS0zOS43ODcsMzkuNzg3LTM5Ljc4NyAgIGMyMS45MzksMCwzOS43ODcsMTcuODQ5LDM5Ljc4NywzOS43ODdDMjkzLjQ4MSwyNzUuNjMyLDI3NS42MzIsMjkzLjQ4MSwyNTMuNjk0LDI5My40ODF6IE0yNTMuNjk0LDIxOS42NzIgICBjLTE4Ljc1OSwwLTM0LjAyMSwxNS4yNjItMzQuMDIxLDM0LjAyMWMwLDE4Ljc2LDE1LjI2MiwzNC4wMjEsMzQuMDIxLDM0LjAyMWMxOC43NiwwLDM0LjAyMS0xNS4yNjIsMzQuMDIxLTM0LjAyMSAgIEMyODcuNzE1LDIzNC45MzQsMjcyLjQ1MywyMTkuNjcyLDI1My42OTQsMjE5LjY3MnoiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" /></h3>
+      <h3 style="margin-bottom:0px">Active Cases </h3>
+		<p style="font-size:15px; margin-top:0px;">Indian Citizens</p>
 		<div class="card_div">
 		  <p id="total_active_india" style="font-size:36px; margin:0px;"></p>
 		  <p style="font-size:15px; margin-top:0px;">Total</p>
@@ -168,7 +152,36 @@
 
   <div class="column">
     <div class="card">
-		<h3>Deaths <img style="width:21px; margin-bottom:-5px;" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPHBhdGggc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIGQ9Ik01MTIsNDAwLjE0NGMtMTcwLjY2Nyw2OS4xODktMzQxLjMzMy02OS4xODktNTEyLDBjMC05Ni4wOTYsMC0xOTIuMTkzLDAtMjg4LjI4OCAgYzE3MC42NjctNjkuMTg5LDM0MS4zMzMsNjkuMTg5LDUxMiwwQzUxMiwyMDcuOTUyLDUxMiwzMDQuMDQ4LDUxMiw0MDAuMTQ0eiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRjRDNjUzOyIgZD0iTTAsMjA3Ljk1MmMxNzAuNjY3LTY5LjE4OSwzNDEuMzMzLDY5LjE4OSw1MTIsMHYtOTYuMDk2Yy0xNzAuNjY3LDY5LjE4OS0zNDEuMzMzLTY5LjE4OS01MTIsMCIvPgo8cGF0aCBzdHlsZT0iZmlsbDojODdFODdDOyIgZD0iTTAsNDAwLjE0NGMxNzAuNjY3LTY5LjE4OSwzNDEuMzMzLDY5LjE4OSw1MTIsMHYtOTYuMDk2Yy0xNzAuNjY3LDY5LjE4OS0zNDEuMzMzLTY5LjE4OS01MTIsMCIvPgo8Zz4KCTxwYXRoIHN0eWxlPSJmaWxsOiM1M0JFRjQ7IiBkPSJNMjUzLjY5NCwyMjkuMTQxYzEuMTk1LDQuMDkzLDEuODE0LDguMTg0LDIuMjU5LDEyLjI3NmMwLjQyMyw0LjA5MywwLjYxOSw4LjE4NCwwLjYyMywxMi4yNzYgICBjMC4wMDUsNC4wOTMtMC4xOTMsOC4xODQtMC42MTUsMTIuMjc2Yy0wLjQ0NCw0LjA5My0xLjA2Niw4LjE4NC0yLjI2NywxMi4yNzZjLTEuMjAyLTQuMDkzLTEuODIzLTguMTg0LTIuMjY3LTEyLjI3NiAgIGMtMC40MjItNC4wOTMtMC42MTktOC4xODQtMC42MTYtMTIuMjc2YzAuMDAzLTQuMDkzLDAuMjAxLTguMTg0LDAuNjIzLTEyLjI3NkMyNTEuODgsMjM3LjMyNSwyNTIuNDk5LDIzMy4yMzMsMjUzLjY5NCwyMjkuMTQxeiIvPgoJPHBhdGggc3R5bGU9ImZpbGw6IzUzQkVGNDsiIGQ9Ik0yNzEuMDU2LDIzNi4zMzJjLTIuMDQ5LDMuNzM5LTQuNTA1LDcuMDY5LTcuMDg0LDEwLjI3OGMtMi41OTUsMy4xOTMtNS4zNDksNi4yMjUtOC4yNCw5LjEyMSAgIGMtMi44OSwyLjg5Ny01LjkyNCw1LjY1LTkuMTE2LDguMjQ2Yy0zLjIwNywyLjU4LTYuNTQxLDUuMDM0LTEwLjI4NCw3LjA3OGMyLjA0NS0zLjc0Myw0LjQ5OC03LjA3Niw3LjA3OC0xMC4yODQgICBjMi41OTUtMy4xOTIsNS4zNDgtNi4yMjYsOC4yNDYtOS4xMTZjMi44OTYtMi44OTEsNS45MjgtNS42NDYsOS4xMjEtOC4yNEMyNjMuOTg2LDI0MC44MzcsMjY3LjMxNywyMzguMzgxLDI3MS4wNTYsMjM2LjMzMnoiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiM1M0JFRjQ7IiBkPSJNMjc4LjI0NywyNTMuNjk0Yy00LjA5MywxLjE5NS04LjE4NCwxLjgxNC0xMi4yNzYsMi4yNTljLTQuMDkzLDAuNDIzLTguMTg0LDAuNjE5LTEyLjI3NiwwLjYyMyAgIGMtNC4wOTMsMC4wMDUtOC4xODQtMC4xOTMtMTIuMjc2LTAuNjE2Yy00LjA5My0wLjQ0NC04LjE4NC0xLjA2Ni0xMi4yNzYtMi4yNjdjNC4wOTMtMS4yMDIsOC4xODQtMS44MjMsMTIuMjc2LTIuMjY3ICAgYzQuMDkzLTAuNDIyLDguMTg0LTAuNjE5LDEyLjI3Ni0wLjYxNWM0LjA5MywwLjAwMyw4LjE4NCwwLjIwMSwxMi4yNzYsMC42MjNDMjcwLjA2MywyNTEuODgxLDI3NC4xNTQsMjUyLjQ5OSwyNzguMjQ3LDI1My42OTR6Ii8+Cgk8cGF0aCBzdHlsZT0iZmlsbDojNTNCRUY0OyIgZD0iTTI3MS4wNTYsMjcxLjA1NmMtMy43MzktMi4wNDktNy4wNjktNC41MDUtMTAuMjc4LTcuMDg0Yy0zLjE5My0yLjU5NS02LjIyNS01LjM0OS05LjEyMS04LjI0ICAgYy0yLjg5Ny0yLjg5LTUuNjUtNS45MjQtOC4yNDYtOS4xMTZjLTIuNTgtMy4yMDctNS4wMzQtNi41NDEtNy4wNzgtMTAuMjg0YzMuNzQzLDIuMDQzLDcuMDc2LDQuNDk4LDEwLjI4NCw3LjA3OCAgIGMzLjE5MiwyLjU5NSw2LjIyNiw1LjM0OSw5LjExNiw4LjI0NmMyLjg5MSwyLjg5Niw1LjY0Niw1LjkyOCw4LjI0LDkuMTIxQzI2Ni41NSwyNjMuOTg2LDI2OS4wMDYsMjY3LjMxNywyNzEuMDU2LDI3MS4wNTZ6Ii8+Cgk8cGF0aCBzdHlsZT0iZmlsbDojNTNCRUY0OyIgZD0iTTI1My42OTQsMjkzLjQ4MWMtMjEuOTM5LDAtMzkuNzg3LTE3Ljg0OS0zOS43ODctMzkuNzg3YzAtMjEuOTM5LDE3Ljg0OS0zOS43ODcsMzkuNzg3LTM5Ljc4NyAgIGMyMS45MzksMCwzOS43ODcsMTcuODQ5LDM5Ljc4NywzOS43ODdDMjkzLjQ4MSwyNzUuNjMyLDI3NS42MzIsMjkzLjQ4MSwyNTMuNjk0LDI5My40ODF6IE0yNTMuNjk0LDIxOS42NzIgICBjLTE4Ljc1OSwwLTM0LjAyMSwxNS4yNjItMzQuMDIxLDM0LjAyMWMwLDE4Ljc2LDE1LjI2MiwzNC4wMjEsMzQuMDIxLDM0LjAyMWMxOC43NiwwLDM0LjAyMS0xNS4yNjIsMzQuMDIxLTM0LjAyMSAgIEMyODcuNzE1LDIzNC45MzQsMjcyLjQ1MywyMTkuNjcyLDI1My42OTQsMjE5LjY3MnoiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" /></h3>
+      <h3 style="margin-bottom:0px">Active Cases </h3>
+		<p style="font-size:15px; margin-top:0px;">Foriegn Citizens</p>
+		<div class="card_div">
+		  <p id="total_active_india" style="font-size:36px; margin:0px;"></p>
+		  <p style="font-size:15px; margin-top:0px;">Total</p>
+		</div>
+		<div class="card_div" style="float:right;">
+		  <p id="24_active_india" style="font-size:36px; margin:0px;"></p>	
+		  <p style="font-size:15px; margin-top:0px;">Last 24hrs</p>
+		</div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+		<h3>Cured</h3>
+		<div class="card_div">
+		  <p id="total_active_india" style="font-size:36px; margin:0px;"></p>
+		  <p style="font-size:15px; margin-top:0px;">Total</p>
+		</div>
+		<div class="card_div" style="float:right;">
+		  <p id="24_active_india" style="font-size:36px; margin:0px;"></p>	
+		  <p style="font-size:15px; margin-top:0px;">Last 24hrs</p>
+		</div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+		<h3>Deaths </h3>
 		<div class="card_div">
 		  <p id="total_deaths_india" style="font-size:36px;  margin:0px;"></p>
 		  <p style="font-size:15px;  margin-top:0px;">Total</p>
@@ -184,7 +197,8 @@
   <div class = "mapdiv" id="map">
     <script type="text/javascript" src="indiastates.js"></script>
     <script>
-      var map = L.map('map').setView([21.9899, 76.6280], 4);
+	
+      var map = L.map('map').setView([23, 84], 5);
       var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar', attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'}).addTo(map);
 
       // https://leafletjs.com/examples/choropleth/
@@ -217,7 +231,7 @@
       };
       info.update = function (props) {
           this._div.innerHTML = '<h4>COVID-19 Visualization in India</h4>' +  (props ?
-              '<b> State Name </b>' + props["State"] + '</br>' + '<b> Cases </b>' + props["24 March"]  + '</br>' + '<b> Deaths </b>' + props.deaths
+              '<b> State Name </b>' + props["State"] + '</br>' + '<b> Active Cases </b>' + props["24 March"]  + '</br>' + '<b> Deaths </b>' + props.deaths
               : 'Hover over a AOI');
       };
       info.addTo(map);
@@ -248,9 +262,9 @@
 
       function onEachFeature(feature, layer) {
         layer.on({
-            mouseover: highlightFeature,
+            click: highlightFeature,
             mouseout: resetHighlight,
-            click: zoomToFeature
+            dblclick: zoomToFeature
         });
       }
 
@@ -303,7 +317,17 @@
 </div>
       
 <script>
-
+	d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/Death%2025_03_2020.csv', function(err, rows_death){
+	var death_headerNames = d3.keys(rows_death[0]);
+	var d_last_date = death_headerNames[death_headerNames.length-1];
+	var d_last_count = rows_death[0][d_last_date];
+	var d_count_diff = rows_death[0][d_last_date]-rows_death[0][death_headerNames[death_headerNames.length-2]];
+	//window.alert(count_diff);
+	var deathIndiatext = document.getElementById("total_deaths_india");
+	deathIndiatext.textContent += d_last_count;
+	var d_countchnagetext = document.getElementById("24_deaths_india");
+	d_countchnagetext.textContent += d_count_diff;
+	});
 	
     Plotly.d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/Indian%20-%2025_03_2020.csv', function(err, rows){
 	var headerNames = d3.keys(rows[0]);
@@ -318,17 +342,7 @@
 	datetext.textContent += last_date;
 	var countchnagetext = document.getElementById("24_active_india");
 	countchnagetext.textContent += count_diff;
-	Plotly.d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/Death%2025_03_2020.csv', function(err, rows_death){
-	var death_headerNames = d3.keys(rows_death[0]);
-	var d_last_date = death_headerNames[death_headerNames.length-1];
-	var d_last_count = rows_death[0][d_last_date];
-	var d_count_diff = rows_death[0][d_last_date]-rows_death[0][death_headerNames[death_headerNames.length-2]];
-	//window.alert(count_diff);
-	var deathIndiatext = document.getElementById("total_deaths_india");
-	deathIndiatext.textContent += d_last_count;
-	var d_countchnagetext = document.getElementById("24_deaths_india");
-	d_countchnagetext.textContent += d_count_diff;
-	});
+	
     function unpack(rows, key) {
         return rows.map(function(row) { return row[key]; });
     }
