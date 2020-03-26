@@ -155,11 +155,11 @@
       <h3 style="margin-bottom:0px">Active Cases </h3>
 		<p style="font-size:15px; margin-top:0px;">Foriegn Citizens</p>
 		<div class="card_div">
-		  <p id="total_active_india" style="font-size:36px; margin:0px;"></p>
+		  <p id="total_f" style="font-size:36px; margin:0px;"></p>
 		  <p style="font-size:15px; margin-top:0px;">Total</p>
 		</div>
 		<div class="card_div" style="float:right;">
-		  <p id="24_active_india" style="font-size:36px; margin:0px;"></p>	
+		  <p id="24_f" style="font-size:36px; margin:0px;"></p>	
 		  <p style="font-size:15px; margin-top:0px;">Last 24hrs</p>
 		</div>
     </div>
@@ -169,11 +169,11 @@
     <div class="card">
 		<h3>Cured</h3>
 		<div class="card_div">
-		  <p id="total_active_india" style="font-size:36px; margin:0px;"></p>
+		  <p id="total_c" style="font-size:36px; margin:0px;"></p>
 		  <p style="font-size:15px; margin-top:0px;">Total</p>
 		</div>
 		<div class="card_div" style="float:right;">
-		  <p id="24_active_india" style="font-size:36px; margin:0px;"></p>	
+		  <p id="24_c" style="font-size:36px; margin:0px;"></p>	
 		  <p style="font-size:15px; margin-top:0px;">Last 24hrs</p>
 		</div>
     </div>
@@ -329,6 +329,30 @@
 	d_countchnagetext.textContent += d_count_diff;
 	});
 	
+	d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/Forienger%20-%2025_03_2020.csv', function(err, rows_f){
+	var f_headerNames = d3.keys(rows_f[0]);
+	var f_last_date = f_headerNames[f_headerNames.length-1];
+	var f_last_count = rows_f[0][f_last_date];
+	var f_count_diff = rows_f[0][f_last_date]-rows_f[0][f_headerNames[f_headerNames.length-2]];
+	window.alert(f_headerNames[f_headerNames.length-2]);
+	var fIndiatext = document.getElementById("total_f");
+	fIndiatext.textContent += f_last_count;
+	var f_countchnagetext = document.getElementById("24_f");
+	f_countchnagetext.textContent += f_count_diff;
+	});
+	
+	d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/Cured%20-%2025_03_2020.csv', function(err, rows_c){
+	var c_headerNames = d3.keys(rows_c[0]);
+	var c_last_date = c_headerNames[c_headerNames.length-1];
+	var c_last_count = rows_c[0][c_last_date];
+	var c_count_diff = rows_c[0][c_last_date]-rows_c[0][c_headerNames[c_headerNames.length-2]];
+	//window.alert(count_diff);
+	var cIndiatext = document.getElementById("total_c");
+	cIndiatext.textContent += c_last_count;
+	var c_countchnagetext = document.getElementById("24_c");
+	c_countchnagetext.textContent += c_count_diff;
+	});
+	
     Plotly.d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/Indian%20-%2025_03_2020.csv', function(err, rows){
 	var headerNames = d3.keys(rows[0]);
 	//window.alert(headerNames[0]);
@@ -381,8 +405,8 @@ function setBubblePlot(chosenState) {
       y: currentStateCount,
       mode: 'lines+markers',
       marker: {
-        size: 12, 
-        opacity: 0.5
+        size: 5, 
+        opacity: 1
       }
     };
 
