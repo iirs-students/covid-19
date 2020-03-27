@@ -13,6 +13,9 @@
 	 <script src="https://cdn.plot.ly/plotly-1.2.0.min.js"></script>
 	 
     <style>
+		.info legend leaflet-control{
+		width:100px;
+		}
 		.scroll_button{
 		width:120px;
 		text-align:center;
@@ -313,11 +316,12 @@
             var div = L.DomUtil.create('div', 'info legend'),
                 grades = [null, 5, 10, 15, 20, 25, 30, 35],
                 labels = [];
+				div.innerHTML += '<h2>Legend</h2>';
             // loop through our density intervals and generate a label with a colored square for each interval
             for (var i = 0; i < grades.length; i++) {
                 div.innerHTML +=
-                    '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
-                    grades[i] + (grades[i + 1] ? '&ndash;'+grades[i + 1] + '<br>': '+');
+                    '<div style="width:100%;"><i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+                    grades[i] + (grades[i + 1] ? '&ndash;'+grades[i + 1] + '<br>': '+')+'</div>';
             }
 
             return div;
