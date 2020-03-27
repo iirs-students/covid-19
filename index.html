@@ -13,6 +13,8 @@
 	 <script src="https://cdn.plot.ly/plotly-1.2.0.min.js"></script>
 	 
     <style>
+		.bubbleplot{
+		padding-bottom:20px;}
 		.info.legend.leaflet-control{
 		width:100px;
 		}
@@ -86,7 +88,7 @@
         }
 		
 		.chart_div {
-          margin:auto;
+		display: inline-block;
           width: 70%;
           padding: 15px;
 		  padding-right: 5px;
@@ -471,6 +473,7 @@
 		  
 		</div>
 	</div>
+	<div style="float:right; display:inline-block"><img style = "width:550px;"src="https://upload.wikimedia.org/wikipedia/commons/9/95/COVID-19_India_Total_Cases_Animated_Map.gif" alt="COVID-19 India Total Cases Animated Map.gif"></div>
 	<button class = "scroll_button" style="right:0" onclick="scroll_to_element('map')">Scroll to Map</button>
 	<button class = "scroll_button" style="left:0" onclick="scroll_to_element('chart')">Scroll to Chart</button>
 <script>
@@ -478,5 +481,5 @@
 	 var elmnt = document.getElementById(content_id);
 	 elmnt.scrollIntoView();
 	 }</script>
-</body>
+	 </body>
 </html>
