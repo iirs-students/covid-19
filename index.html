@@ -320,7 +320,7 @@
             // loop through our density intervals and generate a label with a colored square for each interval
             for (var i = 0; i < grades.length; i++) {
                 div.innerHTML +=
-                    '<div style="width:100%;"><i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+                    '<div style="width:100%; white-space:nowrap;"><i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
                     grades[i] + (grades[i + 1] ? '&ndash;'+grades[i + 1] + '<br>': '+')+'</div>';
             }
 
