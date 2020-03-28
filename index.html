@@ -119,6 +119,7 @@
 			}
 			.mapdiv {
 				width: 100%;
+				height: 500px;
 				display:block;
 				position:relative;
 				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -245,7 +246,7 @@
           opacity: 1,
           color: 'black',
 		  fillOpacity: .5,
-          fillColor: getColor(feature.properties["Active Cases"])
+          fillColor: getColor(feature.properties["Total Confirmed cases (Indian National)"])
         };
       }
 
@@ -258,7 +259,7 @@
       };
       info.update = function (props) {
           this._div.innerHTML = '<h4>COVID-19 Visualization in India</h4>' +  (props ?
-              '<b> State Name </b>' + props["State"] + '</br>' + '<b> Active Cases </b>' + props["Active Cases"]  + '</br>' + '<b> Foriegn Cases </b>' + props["Foriegn Cases"] +'</br>' + '<b> Deaths </b>' + props["Death"] + '</br>' + '<b> Cured </b>' + props["Cured"] 
+              '<b> State Name </b>' + props["ST_NM"] + '</br>' + '<b> Active Cases </b>' + props["Total Confirmed cases (Indian National)"]  + '</br>' + '<b> Foriegn Cases </b>' + props["Total Confirmed cases ( Foreign National )"] +'</br>' + '<b> Deaths </b>' + props["Death"] + '</br>' + '<b> Cured </b>' + props["Cured\/Discharged\/Migrated"] 
               : 'Click on a state');
       };
       info.addTo(map);
@@ -347,7 +348,8 @@
 			</div>
 		  
 		<script>
-		d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/Death%2025_03_2020.csv', function(err, rows_death){
+		var total_count = document.getElementById("menutext");
+		Plotly.d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/Death%2025_03_2020.csv', function(err, rows_death){
 		var death_headerNames = d3.keys(rows_death[0]);
 		var d_last_date = death_headerNames[death_headerNames.length-1];
 		var d_last_count = rows_death[0][d_last_date];
@@ -355,11 +357,13 @@
 		//window.alert(count_diff);
 		var deathIndiatext = document.getElementById("total_deaths_india");
 		deathIndiatext.textContent += d_last_count;
+		total_count = total_count+ d_last_count;
 		var d_countchnagetext = document.getElementById("24_deaths_india");
 		d_countchnagetext.textContent += d_count_diff;
+		
 		});
 		
-		d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/Forienger%20-%2025_03_2020.csv', function(err, rows_f){
+		Plotly.d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/Forienger%20-%2025_03_2020.csv', function(err, rows_f){
 		var f_headerNames = d3.keys(rows_f[0]);
 		var f_last_date = f_headerNames[f_headerNames.length-1];
 		var f_last_count = rows_f[0][f_last_date];
@@ -369,9 +373,10 @@
 		fIndiatext.textContent += f_last_count;
 		var f_countchnagetext = document.getElementById("24_f");
 		f_countchnagetext.textContent += f_count_diff;
+		total_count = total_count+ f_last_count;
 		});
 		
-		d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/Cured%20-%2025_03_2020.csv', function(err, rows_c){
+		Plotly.d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/Cured%20-%2025_03_2020.csv', function(err, rows_c){
 		var c_headerNames = d3.keys(rows_c[0]);
 		var c_last_date = c_headerNames[c_headerNames.length-1];
 		var c_last_count = rows_c[0][c_last_date];
@@ -381,6 +386,7 @@
 		cIndiatext.textContent += c_last_count;
 		var c_countchnagetext = document.getElementById("24_c");
 		c_countchnagetext.textContent += c_count_diff;
+		total_count = total_count+ c_last_count;
 		});
 		
 		Plotly.d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/Indian%20-%2025_03_2020.csv', function(err, rows){
@@ -396,6 +402,7 @@
 		datetext.textContent += last_date;
 		var countchnagetext = document.getElementById("24_active_india");
 		countchnagetext.textContent += count_diff;
+		total_count = total_count+ last_count;
 		
 		function unpack(rows, key) {
 			return rows.map(function(row) { return row[key]; });
