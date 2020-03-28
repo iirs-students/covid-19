@@ -224,8 +224,12 @@
   <div class = "mapdiv card" id="map">
     <script type="text/javascript" src="indiastates.js"></script>
     <script>
-	
-      var map = L.map('map').setView([23, 84], 5);
+		var w = screen.width;
+		window.alert(w);
+		zoom_level = 5;
+		if (w < 800){
+		zoom_level=4}
+      var map = L.map('map').setView([23, 84], zoom_level);
       var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar', attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'}).addTo(map);
 
       // https://leafletjs.com/examples/choropleth/
