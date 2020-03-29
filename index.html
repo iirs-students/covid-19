@@ -151,6 +151,8 @@
 
         /* Responsive columns */
 @media screen and (max-width: 800px) {
+			.resp{
+			display:none;}
 			.menu_items_mobile{
 			text-decoration:none;
 			color: white;
@@ -243,11 +245,11 @@ function myFunction() {
 <div id="myDIV" class="mobile_menu_options">
 <a class="menu_items_mobile" style="width:100%;" href="http://iirs-students.github.io/covid-19/index.html">Dashboard</a>
 <a class="menu_items_mobile" href="http://iirs-students.github.io/covid-19/blog.html">Articles</a>
-<p style="float:right; display:inline; color:white; padding:7px; margin-top:20px; text-align:center; background:black; width:100%;" id="last_data_date">Data as on </p>
+<p style="float:right; display:inline; color:white; padding:7px; margin-top:20px; text-align:center; background:black; width:100%;" id="last_data_date2">Data as on </p>
 </div>
 <a class="menu_items" href="http://iirs-students.github.io/covid-19/index.html">Dashboard</a>
 <a class="menu_items" href="http://iirs-students.github.io/covid-19/blog.html">Articles</a>
-<p style="float:right; display:inline; color:white; padding:12px; margin:auto;" id="last_data_date">Data as on </p>
+<p style="float:right; display:inline; color:white; padding:12px; margin:auto;" class="resp" id="last_data_date">Data as on </p>
 </div>
 <div class="row">
   <div class="column">
@@ -726,7 +728,9 @@ function myFunction() {
 		var activeIndiatext = document.getElementById("total_active_india");
 		activeIndiatext.textContent += last_count;
 		var datetext = document.getElementById("last_data_date");
+		var datetext2 = document.getElementById("last_data_date2");
 		datetext.textContent += last_date;
+		datetext2.textContent += last_date;
 		var countchnagetext = document.getElementById("24_active_india");
 		countchnagetext.textContent += count_diff;
 		total_count += parseInt( last_count);
@@ -825,8 +829,9 @@ function myFunction() {
 		  
 		</div>
 	</div>
-	
+	<div class="card" style="padding-top:10px; width:70%; margin:auto;">
 	<div style="margin:auto; display:block;"><h3 style="text-align: center;">Spread of COVID-19 in India</h3><img style = "width:550px; display: block; margin:auto;"src="https://upload.wikimedia.org/wikipedia/commons/9/95/COVID-19_India_Total_Cases_Animated_Map.gif" alt="COVID-19 India Total Cases Animated Map.gif"></div>
+	</div>
 	<button class = "scroll_button" style="right:0" onclick="scroll_to_element('map')">Scroll to Map</button>
 	<button class = "scroll_button" style="left:0" onclick="scroll_to_element('chart')">Scroll to Chart</button>
 <script>
