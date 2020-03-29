@@ -260,6 +260,7 @@ function myFunction() {
 <a class="menu_items" href="https://covid19posts.wordpress.com/">Articles</a>
 <p style="float:right; display:inline; color:white; padding:12px; margin:auto;" class="resp" id="last_data_date">Data as on </p>
 </div>
+<div style="text-align:center; padding:15px; background:wheat; font-size:25px; margin-top:30px;">Total Active Cases <h3 id="menutext2" style="display:inline;"></h3></div>
 <div class="row">
   <div class="column">
     <div class="card">
@@ -320,7 +321,8 @@ function myFunction() {
 	</div>
   </div>
 </div>
-<div class="row" style="width:100%; height:100%">
+<div style="text-align:center; padding:15px; background:wheat; margin-top:15px;"><a style="width:100%; height: 40px; margin: auto; font-size:25px; text-decoration: none; color: black;" href="https://covid.icmr.org.in/index.php/testing-facilities">Click to check COVID-19 testing facilities in India</a><img style="width: 20px; margin-left: 15px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/External_link_font_awesome.svg/1024px-External_link_font_awesome.svg.png"></div>
+<div class="row" style="width:100%; height:100%; margin-top:0px;">
 	
   <div class = "mapdiv card" id="map">
     <script type="text/javascript" src="indiastates.js"></script>
@@ -459,7 +461,7 @@ function myFunction() {
 			</div>
 		  
 		<script>
-		//var total_count_text = document.getElementById("menutext2");
+		var total_count_text = document.getElementById("menutext2");
 		
 		var w = screen.width;
 
@@ -474,7 +476,7 @@ function myFunction() {
 		//window.alert(count_diff);
 		var deathIndiatext = document.getElementById("total_deaths_india");
 		deathIndiatext.textContent += d_last_count;
-		total_count +=  parseInt( d_last_count);
+		//total_count +=  parseInt( d_last_count);
 		var d_countchnagetext = document.getElementById("24_deaths_india");
 		d_countchnagetext.textContent += d_count_diff;
 		
@@ -638,7 +640,7 @@ function myFunction() {
 		cIndiatext.textContent += c_last_count;
 		var c_countchnagetext = document.getElementById("24_c");
 		c_countchnagetext.textContent += c_count_diff;
-		total_count +=  parseInt(c_last_count);
+		//total_count +=  parseInt(c_last_count);
 				function unpack(rows_c, key) {
 			return rows_c.map(function(row) { return row[key]; });
 		}
@@ -720,7 +722,7 @@ function myFunction() {
 		var countchnagetext = document.getElementById("24_active_india");
 		countchnagetext.textContent += count_diff;
 		total_count += parseInt( last_count);
-		//total_count_text.textContent += total_count;
+		total_count_text.textContent += total_count;
 		function unpack(rows, key) {
 			return rows.map(function(row) { return row[key]; });
 		}
