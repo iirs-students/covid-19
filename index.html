@@ -13,6 +13,35 @@
 	 <script src="https://cdn.plot.ly/plotly-1.2.0.min.js"></script>
 	 
     <style>
+	.menu_items{
+	
+    padding: 10px;
+    background: gray;
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    border-right-width: 10px;
+}
+		.modebar.modebar--hover{
+		display:none;}
+		.control-row{
+		    background: wheat;
+			margin: 15px;
+			padding: 15px;
+		}	
+		.countrydata{
+					
+				width:  200px;
+				height: 50px;
+				background: #8fd858;
+				color: white;
+				font-size: 19px;
+				padding: 10px;
+			}
+		.countrydata option{
+		background:white;
+		color: black;}
 		.bubbleplot{
 		padding-bottom:20px;}
 		.info.legend.leaflet-control{
@@ -88,10 +117,11 @@
         }
 		
 		.chart_div {
-		display: inline-block;
+		display: block;
           width: 70%;
           padding: 15px;
 		  padding-right: 5px;
+		  margin:auto;
         }
 
         /* Remove extra left and right margins, due to padding */
@@ -119,7 +149,7 @@
 			}
 			.mapdiv {
 				width: 100%;
-				height: 500px;
+				height: 450px;
 				display:block;
 				position:relative;
 				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -141,8 +171,8 @@
         }
         #menu{
             width:100%;
-            height:44px;
-            background-color : black;
+            height:42px;
+            background-color : gray;
 			position: fixed;
 			top:0;
 			right:0;
@@ -150,15 +180,28 @@
         }
         #menutext{
             color : white;
-            text-align: center;
+            text-align: left;
             font-size: 25px;
             font-family: "Segoe UI",Arial,sans-serif;
             margin: auto;
+			display:inline;
+			padding:8px;
+			padding-right: 14px;
+			background: black;
         }
+		.menu_items:hover{
+		background:black;
+		}
     </style>
 </head>
 <body style="margin:0px; padding:40px 20px;">
-<div id="menu"><p id="menutext" style="color:white; text-align:Left; display:inline; padding-left:10px;"><img style="width:21px; margin-bottom:-5px;" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPHBhdGggc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIGQ9Ik01MTIsNDAwLjE0NGMtMTcwLjY2Nyw2OS4xODktMzQxLjMzMy02OS4xODktNTEyLDBjMC05Ni4wOTYsMC0xOTIuMTkzLDAtMjg4LjI4OCAgYzE3MC42NjctNjkuMTg5LDM0MS4zMzMsNjkuMTg5LDUxMiwwQzUxMiwyMDcuOTUyLDUxMiwzMDQuMDQ4LDUxMiw0MDAuMTQ0eiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRjRDNjUzOyIgZD0iTTAsMjA3Ljk1MmMxNzAuNjY3LTY5LjE4OSwzNDEuMzMzLDY5LjE4OSw1MTIsMHYtOTYuMDk2Yy0xNzAuNjY3LDY5LjE4OS0zNDEuMzMzLTY5LjE4OS01MTIsMCIvPgo8cGF0aCBzdHlsZT0iZmlsbDojODdFODdDOyIgZD0iTTAsNDAwLjE0NGMxNzAuNjY3LTY5LjE4OSwzNDEuMzMzLDY5LjE4OSw1MTIsMHYtOTYuMDk2Yy0xNzAuNjY3LDY5LjE4OS0zNDEuMzMzLTY5LjE4OS01MTIsMCIvPgo8Zz4KCTxwYXRoIHN0eWxlPSJmaWxsOiM1M0JFRjQ7IiBkPSJNMjUzLjY5NCwyMjkuMTQxYzEuMTk1LDQuMDkzLDEuODE0LDguMTg0LDIuMjU5LDEyLjI3NmMwLjQyMyw0LjA5MywwLjYxOSw4LjE4NCwwLjYyMywxMi4yNzYgICBjMC4wMDUsNC4wOTMtMC4xOTMsOC4xODQtMC42MTUsMTIuMjc2Yy0wLjQ0NCw0LjA5My0xLjA2Niw4LjE4NC0yLjI2NywxMi4yNzZjLTEuMjAyLTQuMDkzLTEuODIzLTguMTg0LTIuMjY3LTEyLjI3NiAgIGMtMC40MjItNC4wOTMtMC42MTktOC4xODQtMC42MTYtMTIuMjc2YzAuMDAzLTQuMDkzLDAuMjAxLTguMTg0LDAuNjIzLTEyLjI3NkMyNTEuODgsMjM3LjMyNSwyNTIuNDk5LDIzMy4yMzMsMjUzLjY5NCwyMjkuMTQxeiIvPgoJPHBhdGggc3R5bGU9ImZpbGw6IzUzQkVGNDsiIGQ9Ik0yNzEuMDU2LDIzNi4zMzJjLTIuMDQ5LDMuNzM5LTQuNTA1LDcuMDY5LTcuMDg0LDEwLjI3OGMtMi41OTUsMy4xOTMtNS4zNDksNi4yMjUtOC4yNCw5LjEyMSAgIGMtMi44OSwyLjg5Ny01LjkyNCw1LjY1LTkuMTE2LDguMjQ2Yy0zLjIwNywyLjU4LTYuNTQxLDUuMDM0LTEwLjI4NCw3LjA3OGMyLjA0NS0zLjc0Myw0LjQ5OC03LjA3Niw3LjA3OC0xMC4yODQgICBjMi41OTUtMy4xOTIsNS4zNDgtNi4yMjYsOC4yNDYtOS4xMTZjMi44OTYtMi44OTEsNS45MjgtNS42NDYsOS4xMjEtOC4yNEMyNjMuOTg2LDI0MC44MzcsMjY3LjMxNywyMzguMzgxLDI3MS4wNTYsMjM2LjMzMnoiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiM1M0JFRjQ7IiBkPSJNMjc4LjI0NywyNTMuNjk0Yy00LjA5MywxLjE5NS04LjE4NCwxLjgxNC0xMi4yNzYsMi4yNTljLTQuMDkzLDAuNDIzLTguMTg0LDAuNjE5LTEyLjI3NiwwLjYyMyAgIGMtNC4wOTMsMC4wMDUtOC4xODQtMC4xOTMtMTIuMjc2LTAuNjE2Yy00LjA5My0wLjQ0NC04LjE4NC0xLjA2Ni0xMi4yNzYtMi4yNjdjNC4wOTMtMS4yMDIsOC4xODQtMS44MjMsMTIuMjc2LTIuMjY3ICAgYzQuMDkzLTAuNDIyLDguMTg0LTAuNjE5LDEyLjI3Ni0wLjYxNWM0LjA5MywwLjAwMyw4LjE4NCwwLjIwMSwxMi4yNzYsMC42MjNDMjcwLjA2MywyNTEuODgxLDI3NC4xNTQsMjUyLjQ5OSwyNzguMjQ3LDI1My42OTR6Ii8+Cgk8cGF0aCBzdHlsZT0iZmlsbDojNTNCRUY0OyIgZD0iTTI3MS4wNTYsMjcxLjA1NmMtMy43MzktMi4wNDktNy4wNjktNC41MDUtMTAuMjc4LTcuMDg0Yy0zLjE5My0yLjU5NS02LjIyNS01LjM0OS05LjEyMS04LjI0ICAgYy0yLjg5Ny0yLjg5LTUuNjUtNS45MjQtOC4yNDYtOS4xMTZjLTIuNTgtMy4yMDctNS4wMzQtNi41NDEtNy4wNzgtMTAuMjg0YzMuNzQzLDIuMDQzLDcuMDc2LDQuNDk4LDEwLjI4NCw3LjA3OCAgIGMzLjE5MiwyLjU5NSw2LjIyNiw1LjM0OSw5LjExNiw4LjI0NmMyLjg5MSwyLjg5Niw1LjY0Niw1LjkyOCw4LjI0LDkuMTIxQzI2Ni41NSwyNjMuOTg2LDI2OS4wMDYsMjY3LjMxNywyNzEuMDU2LDI3MS4wNTZ6Ii8+Cgk8cGF0aCBzdHlsZT0iZmlsbDojNTNCRUY0OyIgZD0iTTI1My42OTQsMjkzLjQ4MWMtMjEuOTM5LDAtMzkuNzg3LTE3Ljg0OS0zOS43ODctMzkuNzg3YzAtMjEuOTM5LDE3Ljg0OS0zOS43ODcsMzkuNzg3LTM5Ljc4NyAgIGMyMS45MzksMCwzOS43ODcsMTcuODQ5LDM5Ljc4NywzOS43ODdDMjkzLjQ4MSwyNzUuNjMyLDI3NS42MzIsMjkzLjQ4MSwyNTMuNjk0LDI5My40ODF6IE0yNTMuNjk0LDIxOS42NzIgICBjLTE4Ljc1OSwwLTM0LjAyMSwxNS4yNjItMzQuMDIxLDM0LjAyMWMwLDE4Ljc2LDE1LjI2MiwzNC4wMjEsMzQuMDIxLDM0LjAyMWMxOC43NiwwLDM0LjAyMS0xNS4yNjIsMzQuMDIxLTM0LjAyMSAgIEMyODcuNzE1LDIzNC45MzQsMjcyLjQ1MywyMTkuNjcyLDI1My42OTQsMjE5LjY3MnoiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" /><b> Corona Virus Status in India</b></p><p style="float:right; display:inline; color:white; padding-right:10px;" id="last_data_date">Data as on <p></div>
+<div id="menu"><p id="menutext">
+<img style="width:21px; margin-bottom:-5px;" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPHBhdGggc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIGQ9Ik01MTIsNDAwLjE0NGMtMTcwLjY2Nyw2OS4xODktMzQxLjMzMy02OS4xODktNTEyLDBjMC05Ni4wOTYsMC0xOTIuMTkzLDAtMjg4LjI4OCAgYzE3MC42NjctNjkuMTg5LDM0MS4zMzMsNjkuMTg5LDUxMiwwQzUxMiwyMDcuOTUyLDUxMiwzMDQuMDQ4LDUxMiw0MDAuMTQ0eiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRjRDNjUzOyIgZD0iTTAsMjA3Ljk1MmMxNzAuNjY3LTY5LjE4OSwzNDEuMzMzLDY5LjE4OSw1MTIsMHYtOTYuMDk2Yy0xNzAuNjY3LDY5LjE4OS0zNDEuMzMzLTY5LjE4OS01MTIsMCIvPgo8cGF0aCBzdHlsZT0iZmlsbDojODdFODdDOyIgZD0iTTAsNDAwLjE0NGMxNzAuNjY3LTY5LjE4OSwzNDEuMzMzLDY5LjE4OSw1MTIsMHYtOTYuMDk2Yy0xNzAuNjY3LDY5LjE4OS0zNDEuMzMzLTY5LjE4OS01MTIsMCIvPgo8Zz4KCTxwYXRoIHN0eWxlPSJmaWxsOiM1M0JFRjQ7IiBkPSJNMjUzLjY5NCwyMjkuMTQxYzEuMTk1LDQuMDkzLDEuODE0LDguMTg0LDIuMjU5LDEyLjI3NmMwLjQyMyw0LjA5MywwLjYxOSw4LjE4NCwwLjYyMywxMi4yNzYgICBjMC4wMDUsNC4wOTMtMC4xOTMsOC4xODQtMC42MTUsMTIuMjc2Yy0wLjQ0NCw0LjA5My0xLjA2Niw4LjE4NC0yLjI2NywxMi4yNzZjLTEuMjAyLTQuMDkzLTEuODIzLTguMTg0LTIuMjY3LTEyLjI3NiAgIGMtMC40MjItNC4wOTMtMC42MTktOC4xODQtMC42MTYtMTIuMjc2YzAuMDAzLTQuMDkzLDAuMjAxLTguMTg0LDAuNjIzLTEyLjI3NkMyNTEuODgsMjM3LjMyNSwyNTIuNDk5LDIzMy4yMzMsMjUzLjY5NCwyMjkuMTQxeiIvPgoJPHBhdGggc3R5bGU9ImZpbGw6IzUzQkVGNDsiIGQ9Ik0yNzEuMDU2LDIzNi4zMzJjLTIuMDQ5LDMuNzM5LTQuNTA1LDcuMDY5LTcuMDg0LDEwLjI3OGMtMi41OTUsMy4xOTMtNS4zNDksNi4yMjUtOC4yNCw5LjEyMSAgIGMtMi44OSwyLjg5Ny01LjkyNCw1LjY1LTkuMTE2LDguMjQ2Yy0zLjIwNywyLjU4LTYuNTQxLDUuMDM0LTEwLjI4NCw3LjA3OGMyLjA0NS0zLjc0Myw0LjQ5OC03LjA3Niw3LjA3OC0xMC4yODQgICBjMi41OTUtMy4xOTIsNS4zNDgtNi4yMjYsOC4yNDYtOS4xMTZjMi44OTYtMi44OTEsNS45MjgtNS42NDYsOS4xMjEtOC4yNEMyNjMuOTg2LDI0MC44MzcsMjY3LjMxNywyMzguMzgxLDI3MS4wNTYsMjM2LjMzMnoiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiM1M0JFRjQ7IiBkPSJNMjc4LjI0NywyNTMuNjk0Yy00LjA5MywxLjE5NS04LjE4NCwxLjgxNC0xMi4yNzYsMi4yNTljLTQuMDkzLDAuNDIzLTguMTg0LDAuNjE5LTEyLjI3NiwwLjYyMyAgIGMtNC4wOTMsMC4wMDUtOC4xODQtMC4xOTMtMTIuMjc2LTAuNjE2Yy00LjA5My0wLjQ0NC04LjE4NC0xLjA2Ni0xMi4yNzYtMi4yNjdjNC4wOTMtMS4yMDIsOC4xODQtMS44MjMsMTIuMjc2LTIuMjY3ICAgYzQuMDkzLTAuNDIyLDguMTg0LTAuNjE5LDEyLjI3Ni0wLjYxNWM0LjA5MywwLjAwMyw4LjE4NCwwLjIwMSwxMi4yNzYsMC42MjNDMjcwLjA2MywyNTEuODgxLDI3NC4xNTQsMjUyLjQ5OSwyNzguMjQ3LDI1My42OTR6Ii8+Cgk8cGF0aCBzdHlsZT0iZmlsbDojNTNCRUY0OyIgZD0iTTI3MS4wNTYsMjcxLjA1NmMtMy43MzktMi4wNDktNy4wNjktNC41MDUtMTAuMjc4LTcuMDg0Yy0zLjE5My0yLjU5NS02LjIyNS01LjM0OS05LjEyMS04LjI0ICAgYy0yLjg5Ny0yLjg5LTUuNjUtNS45MjQtOC4yNDYtOS4xMTZjLTIuNTgtMy4yMDctNS4wMzQtNi41NDEtNy4wNzgtMTAuMjg0YzMuNzQzLDIuMDQzLDcuMDc2LDQuNDk4LDEwLjI4NCw3LjA3OCAgIGMzLjE5MiwyLjU5NSw2LjIyNiw1LjM0OSw5LjExNiw4LjI0NmMyLjg5MSwyLjg5Niw1LjY0Niw1LjkyOCw4LjI0LDkuMTIxQzI2Ni41NSwyNjMuOTg2LDI2OS4wMDYsMjY3LjMxNywyNzEuMDU2LDI3MS4wNTZ6Ii8+Cgk8cGF0aCBzdHlsZT0iZmlsbDojNTNCRUY0OyIgZD0iTTI1My42OTQsMjkzLjQ4MWMtMjEuOTM5LDAtMzkuNzg3LTE3Ljg0OS0zOS43ODctMzkuNzg3YzAtMjEuOTM5LDE3Ljg0OS0zOS43ODcsMzkuNzg3LTM5Ljc4NyAgIGMyMS45MzksMCwzOS43ODcsMTcuODQ5LDM5Ljc4NywzOS43ODdDMjkzLjQ4MSwyNzUuNjMyLDI3NS42MzIsMjkzLjQ4MSwyNTMuNjk0LDI5My40ODF6IE0yNTMuNjk0LDIxOS42NzIgICBjLTE4Ljc1OSwwLTM0LjAyMSwxNS4yNjItMzQuMDIxLDM0LjAyMWMwLDE4Ljc2LDE1LjI2MiwzNC4wMjEsMzQuMDIxLDM0LjAyMWMxOC43NiwwLDM0LjAyMS0xNS4yNjIsMzQuMDIxLTM0LjAyMSAgIEMyODcuNzE1LDIzNC45MzQsMjcyLjQ1MywyMTkuNjcyLDI1My42OTQsMjE5LjY3MnoiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" />
+<b> Corona Virus Status in India</b></p>
+<a class="menu_items" href="http://iirs-students.github.io/covid-19/index.html">Dashboard</a>
+<a class="menu_items" href="http://iirs-students.github.io/covid-19/blog.html">Articles</a>
+<p style="float:right; display:inline; color:white; padding:12px; margin:auto;" id="last_data_date">Data as on </p>
+</div>
 <div class="row">
   <div class="column">
     <div class="card">
@@ -225,7 +268,8 @@
     <script type="text/javascript" src="indiastates.js"></script>
     <script>
 		var w = screen.width;
-		window.alert(w);
+		
+		//window.alert(w);
 		zoom_level = 5;
 		if (w < 800){
 		zoom_level=4}
@@ -338,21 +382,31 @@
     </script>
   </div>
 	<div class="chart_div" id="chart">
-		<div class="card">
+		<div class="card" style="padding-top:10px;">
 			<div class="showcase__section" id="bubble">
 				<div class="spacer --small"></div>
 				<div id="bubbleplots">
-					<div class="bubbleplot" data-num="0">
-						<div class="plot" id="plotdiv"></div>
+					<div class="bubbleplot" data-num="0" >
 						<div class="control-row">
-							Select State: <select class="countrydata"></select>
+							<h3>Select state to display timeline graph </h3>
+							<select class="countrydata">
+							<optio1n selected disabled>Choose State</option></select>
 						</div>
+						<div class="plot" id="plotdiv"></div>
+						<div class="plot" id="plotdiv3"></div>
+						<div class="plot" id="plotdiv2"></div>
+						<div class="plot" id="plotdiv4"></div>
 					</div>
 				</div>
 			</div>
 		  
 		<script>
-		var total_count = document.getElementById("menutext");
+		//var total_count_text = document.getElementById("menutext2");
+		
+		var w = screen.width;
+		var chart_width = 0.95*parseInt(document.getElementById("chart").offsetWidth);
+		
+		var total_count = 0;
 		Plotly.d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/Death%2025_03_2020.csv', function(err, rows_death){
 		var death_headerNames = d3.keys(rows_death[0]);
 		var d_last_date = death_headerNames[death_headerNames.length-1];
@@ -361,9 +415,88 @@
 		//window.alert(count_diff);
 		var deathIndiatext = document.getElementById("total_deaths_india");
 		deathIndiatext.textContent += d_last_count;
-		total_count = total_count+ d_last_count;
+		total_count +=  parseInt( d_last_count);
 		var d_countchnagetext = document.getElementById("24_deaths_india");
 		d_countchnagetext.textContent += d_count_diff;
+		
+		function unpack(rows_death, key) {
+			return rows_death.map(function(row) { return row[key]; });
+		}
+		
+	var allStates = unpack(rows_death, 'State'),
+		allDates = [],
+		currentStateCount = [];
+
+		
+		for (var i = 0 ; i<death_headerNames.length;i++){
+			allDates.push(death_headerNames[i])
+		}
+	//window.alert(allDates);
+	  
+	  function getStateData(chosenState) {
+		currentStateCount = [];
+		for (var i = 0 ; i < allStates.length ; i++){
+		  if ( allStates[i] === chosenState ) {
+			for (var j = 0; j<allDates.length; j++){
+			if (j===0){currentStateCount.push(" ");}
+			else{currentStateCount.push(rows_death[i][death_headerNames[j]]);}
+			
+			//window.alert(currentStateCount)
+			}
+		  } 
+		}
+	  };
+
+	// Default Country Data
+	setBubblePlot('All India');
+	  
+	function setBubblePlot(chosenState) {
+		getStateData(chosenState);  
+
+		var trace1 = {
+		  x: allDates,
+		  y: currentStateCount,
+		  mode: 'lines+markers',
+		  marker: {
+			color: "rgb(255, 0, 0)",
+			size: 5, 
+			opacity: 1
+		  }
+		};
+
+		var data = [trace1];
+
+		var layout = {
+		  title: 'Deaths',
+		  autosize: false,
+		  height: 250	,
+		  width: chart_width,
+		  xaxis: {nticks: 6}
+		};
+		Plotly.newPlot('plotdiv4', data, layout,{responsive:true}, {showSendToCloud: true});
+	};
+	  
+	var innerContainer = document.querySelector('[data-num="0"'),
+		plotEl = innerContainer.querySelector('.plot'),
+		countrySelector = innerContainer.querySelector('.countrydata');
+
+
+	function assignOptions(textArray, selector) {
+	  for (var i = 0; i < textArray.length;  i++) {
+		  var currentOption = document.createElement('option');
+		  currentOption.text = textArray[i];
+		  selector.appendChild(currentOption);
+	  }
+	}
+
+	assignOptions(allStates, countrySelector);
+
+	function updateCountry(){
+		setBubblePlot(countrySelector.value);
+	}
+	  
+	countrySelector.addEventListener('change', updateCountry, false);
+		
 		
 		});
 		
@@ -377,48 +510,19 @@
 		fIndiatext.textContent += f_last_count;
 		var f_countchnagetext = document.getElementById("24_f");
 		f_countchnagetext.textContent += f_count_diff;
-		total_count = total_count+ f_last_count;
-		});
+		total_count += parseInt(f_last_count);
 		
-		Plotly.d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/Cured%20-%2025_03_2020.csv', function(err, rows_c){
-		var c_headerNames = d3.keys(rows_c[0]);
-		var c_last_date = c_headerNames[c_headerNames.length-1];
-		var c_last_count = rows_c[0][c_last_date];
-		var c_count_diff = rows_c[0][c_last_date]-rows_c[0][c_headerNames[c_headerNames.length-2]];
-		//window.alert(count_diff);
-		var cIndiatext = document.getElementById("total_c");
-		cIndiatext.textContent += c_last_count;
-		var c_countchnagetext = document.getElementById("24_c");
-		c_countchnagetext.textContent += c_count_diff;
-		total_count = total_count+ c_last_count;
-		});
-		
-		Plotly.d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/Indian%20-%2025_03_2020.csv', function(err, rows){
-		var headerNames = d3.keys(rows[0]);
-		//window.alert(headerNames[0]);
-		var last_date = headerNames[headerNames.length-1];
-		var last_count = rows[0][last_date];
-		var count_diff = rows[0][last_date]-rows[0][headerNames[headerNames.length-2]];
-		//window.alert(count_diff);
-		var activeIndiatext = document.getElementById("total_active_india");
-		activeIndiatext.textContent += last_count;
-		var datetext = document.getElementById("last_data_date");
-		datetext.textContent += last_date;
-		var countchnagetext = document.getElementById("24_active_india");
-		countchnagetext.textContent += count_diff;
-		total_count = total_count+ last_count;
-		
-		function unpack(rows, key) {
-			return rows.map(function(row) { return row[key]; });
+						function unpack(rows_f, key) {
+			return rows_f.map(function(row) { return row[key]; });
 		}
 		
-	var allStates = unpack(rows, 'State'),
+	var allStates = unpack(rows_f, 'State'),
 		allDates = [],
 		currentStateCount = [];
 
 		
-		for (var i = 0 ; i<headerNames.length;i++){
-			allDates.push(headerNames[i])
+		for (var i = 0 ; i<f_headerNames.length;i++){
+			allDates.push(f_headerNames[i])
 		}
 	//window.alert(allDates);
 	  
@@ -427,10 +531,9 @@
 		for (var i = 0 ; i < allStates.length ; i++){
 		  if ( allStates[i] === chosenState ) {
 			for (var j = 0; j<allDates.length; j++){
-			currentStateCount.push(rows[i][headerNames[j]]);
+			currentStateCount.push(rows_f[i][f_headerNames[j]]);
 			//window.alert(currentStateCount)
 			}
-			
 		  } 
 		}
 	  };
@@ -454,10 +557,201 @@
 		var data = [trace1];
 
 		var layout = {
-		  title: 'Active Cases in<br>'+ chosenState
+		  title: 'Foreign Patients',autosize: false, height: 250, width:chart_width, xaxis: {nticks: 6}
 		};
 
-		Plotly.newPlot('plotdiv', data, layout, {showSendToCloud: true});
+		Plotly.newPlot('plotdiv3', data, layout,{responsive:true}, {showSendToCloud: true});
+	};
+	  
+	var innerContainer = document.querySelector('[data-num="0"'),
+		plotEl = innerContainer.querySelector('.plot'),
+		countrySelector = innerContainer.querySelector('.countrydata');
+
+	function assignOptions(textArray, selector) {
+	  for (var i = 0; i < textArray.length;  i++) {
+		  var currentOption = document.createElement('option');
+		  currentOption.text = textArray[i];
+		  selector.appendChild(currentOption);
+	  }
+	}
+
+	assignOptions(allStates, countrySelector);
+
+	function updateCountry(){
+		setBubblePlot(countrySelector.value);
+	}
+	  
+	countrySelector.addEventListener('change', updateCountry, false);
+		
+		});
+		
+		Plotly.d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/Cured%20-%2025_03_2020.csv', function(err, rows_c){
+		var c_headerNames = d3.keys(rows_c[0]);
+		var c_last_date = c_headerNames[c_headerNames.length-1];
+		var c_last_count = rows_c[0][c_last_date];
+		var c_count_diff = rows_c[0][c_last_date]-rows_c[0][c_headerNames[c_headerNames.length-2]];
+		//window.alert(count_diff);
+		var cIndiatext = document.getElementById("total_c");
+		cIndiatext.textContent += c_last_count;
+		var c_countchnagetext = document.getElementById("24_c");
+		c_countchnagetext.textContent += c_count_diff;
+		total_count +=  parseInt(c_last_count);
+				function unpack(rows_c, key) {
+			return rows_c.map(function(row) { return row[key]; });
+		}
+		
+	var allStates = unpack(rows_c, 'State'),
+		allDates = [],
+		currentStateCount = [];
+
+		
+		for (var i = 0 ; i<c_headerNames.length;i++){
+			allDates.push(c_headerNames[i])
+		}
+	//window.alert(allDates);
+	  
+	  function getStateData(chosenState) {
+		currentStateCount = [];
+		for (var i = 0 ; i < allStates.length ; i++){
+		  if ( allStates[i] === chosenState ) {
+			for (var j = 0; j<allDates.length; j++){
+			currentStateCount.push(rows_c[i][c_headerNames[j]]);
+			//window.alert(currentStateCount)
+			}
+		  } 
+		}
+	  };
+
+	// Default Country Data
+	setBubblePlot('All India');
+	  
+	function setBubblePlot(chosenState) {
+		getStateData(chosenState);  
+
+		var trace1 = {
+		  x: allDates,
+		  y: currentStateCount,
+		  mode: 'lines+markers',
+		  marker: {
+			color: 'rgb(72, 248, 0)',
+			size: 5, 
+			opacity: 1
+		  }
+		};
+
+		var data = [trace1];
+
+		var layout = {
+		  title: 'Cured Patients',autosize: false, height: 250,width:chart_width, xaxis: {nticks: 6}
+		};
+
+		Plotly.newPlot('plotdiv2', data, layout,{responsive:true}, {showSendToCloud: true});
+	};
+	  
+	var innerContainer = document.querySelector('[data-num="0"'),
+		plotEl = innerContainer.querySelector('.plot'),
+		countrySelector = innerContainer.querySelector('.countrydata');
+
+	function assignOptions(textArray, selector) {
+	  for (var i = 0; i < textArray.length;  i++) {
+		  var currentOption = document.createElement('option');
+		  currentOption.text = textArray[i];
+		  selector.appendChild(currentOption);
+	  }
+	}
+
+	assignOptions(allStates, countrySelector);
+
+	function updateCountry(){
+		setBubblePlot(countrySelector.value);
+	}
+	  
+	countrySelector.addEventListener('change', updateCountry, false);
+		});
+		
+		Plotly.d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/Indian%20-%2025_03_2020.csv', function(err, rows){
+		var headerNames = d3.keys(rows[0]);
+		//window.alert(headerNames[0]);
+		var last_date = headerNames[headerNames.length-1];
+		var last_count = rows[0][last_date];
+		var count_diff = rows[0][last_date]-rows[0][headerNames[headerNames.length-2]];
+		//window.alert(count_diff);
+		var activeIndiatext = document.getElementById("total_active_india");
+		activeIndiatext.textContent += last_count;
+		var datetext = document.getElementById("last_data_date");
+		datetext.textContent += last_date;
+		var countchnagetext = document.getElementById("24_active_india");
+		countchnagetext.textContent += count_diff;
+		total_count += parseInt( last_count);
+		//total_count_text.textContent += total_count;
+		function unpack(rows, key) {
+			return rows.map(function(row) { return row[key]; });
+		}
+		
+	var allStates = unpack(rows, 'State'),
+		allDates = [],
+		indiaCount = [],
+		currentStateCount = [];
+
+		
+		for (var i = 0 ; i<headerNames.length;i++){
+			allDates.push(headerNames[i])
+		}
+	//window.alert(allDates);
+	  
+	  function getStateData(chosenState) {
+		currentStateCount = [];
+		for (var i = 0 ; i < allStates.length ; i++){
+		  if ( allStates[i] === chosenState ) {
+			for (var j = 0; j<allDates.length; j++)
+			
+			currentStateCount.push(rows[i][headerNames[j]]);
+			indiaCount.push(rows[0][headerNames[j]]);
+			//window.alert(currentStateCount)
+			}
+		  } 
+		};
+
+	// Default Country Data
+	setBubblePlot('All India');
+	  
+	function setBubblePlot(chosenState) {
+		getStateData(chosenState);  
+
+		var trace1 = {
+		  x: allDates,
+		  y: currentStateCount,
+		  mode: 'lines+markers',
+		  marker: {
+			color: 'rgb(0, 0, 0)',
+			size: 5, 
+			opacity: 1
+		  }
+		};
+		
+		var trace2 = {
+		  x: allDates,
+		  y: indiaCount,
+		  mode: 'lines+markers',
+		  marker: {
+			color: 'rgb(0, 0, 0)',
+			size: 5, 
+			opacity: 1
+		  }
+		};
+
+		var data = [trace1];
+
+		var layout = {
+		  title: 'Active Cases',
+		  autosize: false,
+		  height: 250,
+		  width: chart_width,
+		  automargin: true,
+		  xaxis: {nticks: 5}
+		};
+
+		Plotly.newPlot('plotdiv', data, layout,{showSendToCloud: true});
 	};
 	  
 	var innerContainer = document.querySelector('[data-num="0"'),
@@ -484,7 +778,8 @@
 		  
 		</div>
 	</div>
-	<div style="float:right; display:inline-block"><img style = "width:550px;"src="https://upload.wikimedia.org/wikipedia/commons/9/95/COVID-19_India_Total_Cases_Animated_Map.gif" alt="COVID-19 India Total Cases Animated Map.gif"></div>
+	
+	<div style="margin:auto; display:block;"><h3 style="text-align: center;">Spread of COVID-19 in India</h3><img style = "width:550px; display: block; margin:auto;"src="https://upload.wikimedia.org/wikipedia/commons/9/95/COVID-19_India_Total_Cases_Animated_Map.gif" alt="COVID-19 India Total Cases Animated Map.gif"></div>
 	<button class = "scroll_button" style="right:0" onclick="scroll_to_element('map')">Scroll to Map</button>
 	<button class = "scroll_button" style="left:0" onclick="scroll_to_element('chart')">Scroll to Chart</button>
 <script>
