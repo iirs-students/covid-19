@@ -13,6 +13,19 @@
 	 <script src="https://cdn.plot.ly/plotly-1.2.0.min.js"></script>
 	 
     <style>
+	#myDIV{
+	display:none;}
+	#menu{
+            width:100%;
+            height:42px;
+            background-color : gray;
+			position: fixed;
+			top:0;
+			right:0;
+			z-index:1;
+        }
+	.mobile_menu{
+	display:none;}
 	.menu_items{
 	
     padding: 10px;
@@ -137,7 +150,29 @@
         }
 
         /* Responsive columns */
-        @media screen and (max-width: 800px) {
+@media screen and (max-width: 800px) {
+			.menu_items_mobile{
+			text-decoration:none;
+			color: white;
+			height:25px;
+			display:block;}
+			.menu{
+			background-color:black !important;
+			}
+			
+			.mobile_menu_options{
+			margin-top:9px;
+			padding:15px;
+			background:gray;
+			width:100%;}
+			.mobile_menu{
+			margin-bottom:-14px;
+			width:40px;
+			float:right;
+			display:inline-block;}
+			
+			.menu_items{
+			display:none;}
 			.svg-container{
 		margin:auto;}
 			.chart_div {
@@ -169,15 +204,7 @@
           text-align: center;
           background-color: #ffffff;
         }
-        #menu{
-            width:100%;
-            height:42px;
-            background-color : gray;
-			position: fixed;
-			top:0;
-			right:0;
-			z-index:1;
-        }
+        
         #menutext{
             color : white;
             text-align: left;
@@ -192,12 +219,32 @@
 		.menu_items:hover{
 		background:black;
 		}
+		.menu_items_mobile:hover{
+		color:black;
+		}
     </style>
 </head>
 <body style="margin:0px; padding:40px 20px;">
-<div id="menu"><p id="menutext">
+<script>
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+<div id="menu"class="menu"><p id="menutext">
 <img style="width:21px; margin-bottom:-5px;" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPHBhdGggc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIGQ9Ik01MTIsNDAwLjE0NGMtMTcwLjY2Nyw2OS4xODktMzQxLjMzMy02OS4xODktNTEyLDBjMC05Ni4wOTYsMC0xOTIuMTkzLDAtMjg4LjI4OCAgYzE3MC42NjctNjkuMTg5LDM0MS4zMzMsNjkuMTg5LDUxMiwwQzUxMiwyMDcuOTUyLDUxMiwzMDQuMDQ4LDUxMiw0MDAuMTQ0eiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRjRDNjUzOyIgZD0iTTAsMjA3Ljk1MmMxNzAuNjY3LTY5LjE4OSwzNDEuMzMzLDY5LjE4OSw1MTIsMHYtOTYuMDk2Yy0xNzAuNjY3LDY5LjE4OS0zNDEuMzMzLTY5LjE4OS01MTIsMCIvPgo8cGF0aCBzdHlsZT0iZmlsbDojODdFODdDOyIgZD0iTTAsNDAwLjE0NGMxNzAuNjY3LTY5LjE4OSwzNDEuMzMzLDY5LjE4OSw1MTIsMHYtOTYuMDk2Yy0xNzAuNjY3LDY5LjE4OS0zNDEuMzMzLTY5LjE4OS01MTIsMCIvPgo8Zz4KCTxwYXRoIHN0eWxlPSJmaWxsOiM1M0JFRjQ7IiBkPSJNMjUzLjY5NCwyMjkuMTQxYzEuMTk1LDQuMDkzLDEuODE0LDguMTg0LDIuMjU5LDEyLjI3NmMwLjQyMyw0LjA5MywwLjYxOSw4LjE4NCwwLjYyMywxMi4yNzYgICBjMC4wMDUsNC4wOTMtMC4xOTMsOC4xODQtMC42MTUsMTIuMjc2Yy0wLjQ0NCw0LjA5My0xLjA2Niw4LjE4NC0yLjI2NywxMi4yNzZjLTEuMjAyLTQuMDkzLTEuODIzLTguMTg0LTIuMjY3LTEyLjI3NiAgIGMtMC40MjItNC4wOTMtMC42MTktOC4xODQtMC42MTYtMTIuMjc2YzAuMDAzLTQuMDkzLDAuMjAxLTguMTg0LDAuNjIzLTEyLjI3NkMyNTEuODgsMjM3LjMyNSwyNTIuNDk5LDIzMy4yMzMsMjUzLjY5NCwyMjkuMTQxeiIvPgoJPHBhdGggc3R5bGU9ImZpbGw6IzUzQkVGNDsiIGQ9Ik0yNzEuMDU2LDIzNi4zMzJjLTIuMDQ5LDMuNzM5LTQuNTA1LDcuMDY5LTcuMDg0LDEwLjI3OGMtMi41OTUsMy4xOTMtNS4zNDksNi4yMjUtOC4yNCw5LjEyMSAgIGMtMi44OSwyLjg5Ny01LjkyNCw1LjY1LTkuMTE2LDguMjQ2Yy0zLjIwNywyLjU4LTYuNTQxLDUuMDM0LTEwLjI4NCw3LjA3OGMyLjA0NS0zLjc0Myw0LjQ5OC03LjA3Niw3LjA3OC0xMC4yODQgICBjMi41OTUtMy4xOTIsNS4zNDgtNi4yMjYsOC4yNDYtOS4xMTZjMi44OTYtMi44OTEsNS45MjgtNS42NDYsOS4xMjEtOC4yNEMyNjMuOTg2LDI0MC44MzcsMjY3LjMxNywyMzguMzgxLDI3MS4wNTYsMjM2LjMzMnoiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiM1M0JFRjQ7IiBkPSJNMjc4LjI0NywyNTMuNjk0Yy00LjA5MywxLjE5NS04LjE4NCwxLjgxNC0xMi4yNzYsMi4yNTljLTQuMDkzLDAuNDIzLTguMTg0LDAuNjE5LTEyLjI3NiwwLjYyMyAgIGMtNC4wOTMsMC4wMDUtOC4xODQtMC4xOTMtMTIuMjc2LTAuNjE2Yy00LjA5My0wLjQ0NC04LjE4NC0xLjA2Ni0xMi4yNzYtMi4yNjdjNC4wOTMtMS4yMDIsOC4xODQtMS44MjMsMTIuMjc2LTIuMjY3ICAgYzQuMDkzLTAuNDIyLDguMTg0LTAuNjE5LDEyLjI3Ni0wLjYxNWM0LjA5MywwLjAwMyw4LjE4NCwwLjIwMSwxMi4yNzYsMC42MjNDMjcwLjA2MywyNTEuODgxLDI3NC4xNTQsMjUyLjQ5OSwyNzguMjQ3LDI1My42OTR6Ii8+Cgk8cGF0aCBzdHlsZT0iZmlsbDojNTNCRUY0OyIgZD0iTTI3MS4wNTYsMjcxLjA1NmMtMy43MzktMi4wNDktNy4wNjktNC41MDUtMTAuMjc4LTcuMDg0Yy0zLjE5My0yLjU5NS02LjIyNS01LjM0OS05LjEyMS04LjI0ICAgYy0yLjg5Ny0yLjg5LTUuNjUtNS45MjQtOC4yNDYtOS4xMTZjLTIuNTgtMy4yMDctNS4wMzQtNi41NDEtNy4wNzgtMTAuMjg0YzMuNzQzLDIuMDQzLDcuMDc2LDQuNDk4LDEwLjI4NCw3LjA3OCAgIGMzLjE5MiwyLjU5NSw2LjIyNiw1LjM0OSw5LjExNiw4LjI0NmMyLjg5MSwyLjg5Niw1LjY0Niw1LjkyOCw4LjI0LDkuMTIxQzI2Ni41NSwyNjMuOTg2LDI2OS4wMDYsMjY3LjMxNywyNzEuMDU2LDI3MS4wNTZ6Ii8+Cgk8cGF0aCBzdHlsZT0iZmlsbDojNTNCRUY0OyIgZD0iTTI1My42OTQsMjkzLjQ4MWMtMjEuOTM5LDAtMzkuNzg3LTE3Ljg0OS0zOS43ODctMzkuNzg3YzAtMjEuOTM5LDE3Ljg0OS0zOS43ODcsMzkuNzg3LTM5Ljc4NyAgIGMyMS45MzksMCwzOS43ODcsMTcuODQ5LDM5Ljc4NywzOS43ODdDMjkzLjQ4MSwyNzUuNjMyLDI3NS42MzIsMjkzLjQ4MSwyNTMuNjk0LDI5My40ODF6IE0yNTMuNjk0LDIxOS42NzIgICBjLTE4Ljc1OSwwLTM0LjAyMSwxNS4yNjItMzQuMDIxLDM0LjAyMWMwLDE4Ljc2LDE1LjI2MiwzNC4wMjEsMzQuMDIxLDM0LjAyMWMxOC43NiwwLDM0LjAyMS0xNS4yNjIsMzQuMDIxLTM0LjAyMSAgIEMyODcuNzE1LDIzNC45MzQsMjcyLjQ1MywyMTkuNjcyLDI1My42OTQsMjE5LjY3MnoiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" />
 <b> Corona Virus Status in India</b></p>
+<img class="mobile_menu" onclick="myFunction()" src="https://img.icons8.com/cotton/2x/menu.png" />
+
+<div id="myDIV" class="mobile_menu_options">
+<a class="menu_items_mobile" style="width:100%;" href="http://iirs-students.github.io/covid-19/index.html">Dashboard</a>
+<a class="menu_items_mobile" href="http://iirs-students.github.io/covid-19/blog.html">Articles</a>
+<p style="float:right; display:inline; color:white; padding:7px; margin-top:20px; text-align:center; background:black; width:100%;" id="last_data_date">Data as on </p>
+</div>
 <a class="menu_items" href="http://iirs-students.github.io/covid-19/index.html">Dashboard</a>
 <a class="menu_items" href="http://iirs-students.github.io/covid-19/blog.html">Articles</a>
 <p style="float:right; display:inline; color:white; padding:12px; margin:auto;" id="last_data_date">Data as on </p>
