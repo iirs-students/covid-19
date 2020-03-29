@@ -55,11 +55,14 @@
 		.countrydata option{
 		background:white;
 		color: black;}
+		
 		.bubbleplot{
 		padding-bottom:20px;}
+		
 		.info.legend.leaflet-control{
 		width:100px;
 		}
+		
 		.scroll_button{
 		width:120px;
 		text-align:center;
@@ -75,9 +78,11 @@
 		
 		.control-row{
 		margin-top:15px;}
+		
 		.card_div{
 			width:50%;
 			display:inline-block;}
+			
         .mapdiv {
 		  margin:auto;
           height: 800px;
@@ -531,15 +536,7 @@ function myFunction() {
 		countrySelector = innerContainer.querySelector('.countrydata');
 
 
-	function assignOptions(textArray, selector) {
-	  for (var i = 0; i < textArray.length;  i++) {
-		  var currentOption = document.createElement('option');
-		  currentOption.text = textArray[i];
-		  selector.appendChild(currentOption);
-	  }
-	}
 
-	assignOptions(allStates, countrySelector);
 
 	function updateCountry(){
 		setBubblePlot(countrySelector.value);
@@ -617,15 +614,7 @@ function myFunction() {
 		plotEl = innerContainer.querySelector('.plot'),
 		countrySelector = innerContainer.querySelector('.countrydata');
 
-	function assignOptions(textArray, selector) {
-	  for (var i = 0; i < textArray.length;  i++) {
-		  var currentOption = document.createElement('option');
-		  currentOption.text = textArray[i];
-		  selector.appendChild(currentOption);
-	  }
-	}
 
-	assignOptions(allStates, countrySelector);
 
 	function updateCountry(){
 		setBubblePlot(countrySelector.value);
@@ -702,15 +691,7 @@ function myFunction() {
 		plotEl = innerContainer.querySelector('.plot'),
 		countrySelector = innerContainer.querySelector('.countrydata');
 
-	function assignOptions(textArray, selector) {
-	  for (var i = 0; i < textArray.length;  i++) {
-		  var currentOption = document.createElement('option');
-		  currentOption.text = textArray[i];
-		  selector.appendChild(currentOption);
-	  }
-	}
 
-	assignOptions(allStates, countrySelector);
 
 	function updateCountry(){
 		setBubblePlot(countrySelector.value);
@@ -831,7 +812,7 @@ function myFunction() {
 		</div>
 	</div>
 	<div class="card" style="padding-top:10px; margin:auto;">
-	<div style="margin:auto; display:block;"><h3 style="text-align: center;">Spread of COVID-19 in India</h3><img style = "width: 100%; display: block; margin:auto;"src="https://upload.wikimedia.org/wikipedia/commons/9/95/COVID-19_India_Total_Cases_Animated_Map.gif" alt="COVID-19 India Total Cases Animated Map.gif"></div>
+	<div style="margin:auto; display:block;"><h3 style="text-align: center;">Spread of COVID-19 in India</h3><img style = "max-height:500px; display: block; margin:auto;"src="https://upload.wikimedia.org/wikipedia/commons/9/95/COVID-19_India_Total_Cases_Animated_Map.gif" alt="COVID-19 India Total Cases Animated Map.gif"></div>
 	</div>
 	<button class = "scroll_button" style="right:0" onclick="scroll_to_element('map')">Scroll to Map</button>
 	<button class = "scroll_button" style="left:0" onclick="scroll_to_element('chart')">Scroll to Chart</button>
