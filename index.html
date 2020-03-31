@@ -13,6 +13,9 @@
 	 <script src="https://cdn.plot.ly/plotly-1.2.0.min.js"></script>
 
     <style>
+	.plot{
+	display: inline-block;
+	}
 	#myDIV{
 	display:none;}
 	#menu{
@@ -60,7 +63,7 @@
 		padding-bottom:20px;}
 
 		.info.legend.leaflet-control{
-		width:100px;
+		width:150px;
 		}
 
 		.scroll_button{
@@ -130,13 +133,13 @@
         /* Float four columns side by side */
         .column {
           float: left;
-          width: 25%;
+          width: 33%;
           padding: 0 10px;
         }
 
 		.chart_div {
 		display: block;
-          width: 70%;
+          width: 100%;
           padding: 15px;
 		  padding-right: 5px;
 		  margin:auto;
@@ -156,6 +159,10 @@
 
         /* Responsive columns */
 @media screen and (max-width: 800px) {
+
+			.mobile_wide{
+			width:100% !important;
+			}
 			.resp{
 			display:none !important;}
 			.menu_items_mobile{
@@ -260,12 +267,12 @@ function myFunction() {
 <a class="menu_items" href="https://covid19posts.wordpress.com/">Articles</a>
 <p style="float:right; display:inline; color:white; padding:12px; margin:auto;" class="resp" id="last_data_date">Data as on </p>
 </div>
-<div style="text-align:center; padding:15px; background:wheat; font-size:25px; margin-top:30px;">Total Active Cases <h3 id="menutext2" style="display:inline;"></h3></div>
+<div style="text-align:center; padding:15px; background:wheat; font-size:25px; margin-top:30px; display:none;">Total Active Cases <h3 id="menutext2" style="display:inline;"></h3></div>
 <div class="row">
-  <div class="column">
+  <div class="column mobile_wide" >
     <div class="card">
       <h3 style="margin-bottom:0px">Active Cases</h3>
-		<p style="font-size:15px; margin-top:0px;">Indian Citizens</p>
+		<p style="font-size:15px; margin-top:0px;">Including 49 Foriegn Citizens</p>
 		<div class="card_div">
 		  <p id="total_active_india" style="font-size:36px; margin:0px;"></p>
 		  <p style="font-size:15px; margin-top:0px;">Total</p>
@@ -277,7 +284,7 @@ function myFunction() {
     </div>
   </div>
 
-  <div class="column">
+  <div class="column" style="display:none;">
     <div class="card">
       <h3 style="margin-bottom:0px">Active Cases</h3>
 		<p style="font-size:15px; margin-top:0px;">Foriegn Citizens</p>
@@ -342,13 +349,13 @@ function myFunction() {
       // https://leafletjs.com/examples/choropleth/
       // Choropleth map style
       function getColor(d) {
-        return d > 30 ? '#800026' :
-            d > 25  ? '#BD0026' :
-            d > 20  ? '#E31A1C' :
-            d > 15  ? '#FC4E2A' :
-            d > 10   ? '#FD8D3C' :
-            d > 5   ? '#FEB24C' :
-            d == null   ? '#FED976' :
+        return d > 100 ? '#800026' :
+            d > 80  ? '#BD0026' :
+            d > 60  ? '#E31A1C' :
+            d > 40  ? '#FC4E2A' :
+            d > 20   ? '#FD8D3C' :
+            d > 10   ? '#FEB24C' :
+            d == null   ? ' #ffffff00' :
                   '#FFEDA0';
       }
       function style(feature) {
@@ -429,9 +436,9 @@ function myFunction() {
       // Legend
       legend.onAdd = function (map) {
             var div = L.DomUtil.create('div', 'info legend'),
-                grades = [null, 5, 10, 15, 20, 25, 30, 35],
+                grades = [0, 10, 20, 40, 60, 80, 100],
                 labels = [];
-				div.innerHTML += '<h2>Legend</h2>';
+				div.innerHTML += '<h2>Legend</h2><p>Number of Active Cases</p>';
             // loop through our density intervals and generate a label with a colored square for each interval
             for (var i = 0; i < grades.length; i++) {
                 div.innerHTML +=
@@ -468,9 +475,12 @@ function myFunction() {
 		var total_count_text = document.getElementById("menutext2");
 
 		var w = screen.width;
-
+		if (w>800){
+		var chart_width = (0.95*parseInt(document.getElementById("chart").offsetWidth))/2;
+		}
+		else{
 		var chart_width = 0.95*parseInt(document.getElementById("chart").offsetWidth);
-
+		}
 		var total_count = 0;
 		Plotly.d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/Death%2025_03_2020.csv', function(err, rows_death){
 		var death_headerNames = d3.keys(rows_death[0]);
@@ -536,7 +546,9 @@ function myFunction() {
 		  autosize: false,
 		  height: 250	,
 		  width: chart_width,
-		  xaxis: {nticks: 6}
+		  xaxis: {
+		  nticks: 7,
+		  autorange: true}
 		};
 		Plotly.newPlot('plotdiv4', data, layout,{responsive:true}, {showSendToCloud: true});
 	};
@@ -557,7 +569,7 @@ function myFunction() {
 
 		});
 
-		Plotly.d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/Forienger%20-%2025_03_2020.csv', function(err, rows_f){
+		Plotly.d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/newcases.csv', function(err, rows_f){
 		var f_headerNames = d3.keys(rows_f[0]);
 		var f_last_date = f_headerNames[f_headerNames.length-1];
 		var f_last_count = rows_f[0][f_last_date];
@@ -614,7 +626,7 @@ function myFunction() {
 		var data = [trace1];
 
 		var layout = {
-		  title: 'Foreign Patients',autosize: false, height: 250, width:chart_width, xaxis: {nticks: 6}
+		  title: 'New Cases',autosize: false, height: 250, width:chart_width, xaxis: {nticks: 6}
 		};
 
 		Plotly.newPlot('plotdiv3', data, layout,{responsive:true}, {showSendToCloud: true});
