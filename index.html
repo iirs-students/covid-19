@@ -46,8 +46,8 @@
 			margin: 15px;
 			padding: 15px;
 		}
-		.countrydata{
-
+		.selector_dropdown{
+				margin:5px;
 				width:  200px;
 				height: 50px;
 				background: #8fd858;
@@ -55,7 +55,7 @@
 				font-size: 19px;
 				padding: 10px;
 			}
-		.countrydata option{
+		.selector_dropdown option{
 		background:white;
 		color: black;}
 
@@ -349,12 +349,12 @@ function myFunction() {
       // https://leafletjs.com/examples/choropleth/
       // Choropleth map style
       function getColor(d) {
-        return d > 100 ? '#800026' :
-            d > 80  ? '#BD0026' :
-            d > 60  ? '#E31A1C' :
-            d > 40  ? '#FC4E2A' :
-            d > 20   ? '#FD8D3C' :
-            d > 10   ? '#FEB24C' :
+        return d > 180 ? '#800026' :
+            d > 150  ? '#BD0026' :
+            d > 120  ? '#E31A1C' :
+            d > 90  ? '#FC4E2A' :
+            d > 60   ? '#FD8D3C' :
+            d > 30   ? '#FEB24C' :
             d == null   ? ' #ffffff00' :
                   '#FFEDA0';
       }
@@ -436,7 +436,7 @@ function myFunction() {
       // Legend
       legend.onAdd = function (map) {
             var div = L.DomUtil.create('div', 'info legend'),
-                grades = [0, 10, 20, 40, 60, 80, 100],
+                grades = [0, 30, 60, 90, 120, 150, 180],
                 labels = [];
 				div.innerHTML += '<h2>Legend</h2><p>Number of Active Cases</p>';
             // loop through our density intervals and generate a label with a colored square for each interval
@@ -460,8 +460,13 @@ function myFunction() {
 					<div class="bubbleplot" data-num="0" >
 						<div class="control-row">
 							<h3>Select state to display timeline graph </h3>
-							<select class="countrydata">
-							<optio1n selected disabled>Choose State</option></select>
+							<select class="countrydata selector_dropdown">
+							<option selected disabled>Choose State</option></select>
+							<select class="startDate selector_dropdown">
+							<option selected value=999 disabled>Choose Start Date</option></select>
+							
+							<select class="endDate selector_dropdown">
+							<option selected value=999 disabled>Choose End Date</option></select>
 						</div>
 						<div class="plot" id="plotdiv"></div>
 						<div class="plot" id="plotdiv3"></div>
@@ -484,6 +489,7 @@ function myFunction() {
 		var total_count = 0;
 		Plotly.d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/Death%2025_03_2020.csv', function(err, rows_death){
 		var death_headerNames = d3.keys(rows_death[0]);
+		
 		var d_last_date = death_headerNames[death_headerNames.length-1];
 		var d_last_count = rows_death[0][d_last_date];
 		var d_count_diff = rows_death[0][d_last_date]-rows_death[0][death_headerNames[death_headerNames.length-2]];
@@ -500,21 +506,28 @@ function myFunction() {
 
 	var allStates = unpack(rows_death, 'State'),
 		allDates = [],
-		currentStateCount = [];
-
-
-		for (var i = 0 ; i<death_headerNames.length;i++){
-			allDates.push(death_headerNames[i])
+		currentStateCount = [],
+		start=0,
+		end=death_headerNames.length-1;
+		
+		for (var i = start ; i<=end;i++){
+			if (i!=0){allDates.push(death_headerNames[i])}
 		}
 	//window.alert(allDates);
+	function getAlldates(start_id,end_id){
+		allDates = [];
+		for (var i = start ; i<=end;i++){
+			if (i>0){allDates.push(death_headerNames[i])}
+		}
+	};
 
 	  function getStateData(chosenState) {
 		currentStateCount = [];
 		for (var i = 0 ; i < allStates.length ; i++){
 		  if ( allStates[i] === chosenState ) {
-			for (var j = 0; j<allDates.length; j++){
-			if (j===0){currentStateCount.push(" ");}
-			else{currentStateCount.push(rows_death[i][death_headerNames[j]]);}
+			for (var j = start; j<=end; j++){
+			
+			currentStateCount.push(rows_death[i][death_headerNames[j]]);
 
 			//window.alert(currentStateCount)
 			}
@@ -546,28 +559,50 @@ function myFunction() {
 		  autosize: false,
 		  height: 250	,
 		  width: chart_width,
-		  xaxis: {
-		  nticks: 7,
-		  autorange: true}
+		  automargin: true,
+		  xaxis: {nticks: 7}
 		};
+		//window.alert(currentStateCount);
 		Plotly.newPlot('plotdiv4', data, layout,{responsive:true}, {showSendToCloud: true});
 	};
 
 	var innerContainer = document.querySelector('[data-num="0"'),
 		plotEl = innerContainer.querySelector('.plot'),
 		countrySelector = innerContainer.querySelector('.countrydata');
-
-
-
-
-	function updateCountry(){
-		setBubblePlot(countrySelector.value);
+	
+		var innerContainer2 = document.querySelector('[data-num="0"'),
+		plotE2 = innerContainer2.querySelector('.plot'),
+		dateSelector = innerContainer2.querySelector('.startDate');
+		
+		var innerContainer3 = document.querySelector('[data-num="0"'),
+		plotE3 = innerContainer3.querySelector('.plot'),
+		dateSelector2 = innerContainer3.querySelector('.endDate');
+	
+	
+	function getIndex(list,check_value){
+		for (var i=0; i<list.length;i++){
+			if (list[i]=== check_value){
+				return i;}
+		}
+	}
+	
+	function updateplot(){
+		if (dateSelector.value === "999"){start=0;}
+		else{start = getIndex(death_headerNames,dateSelector.value);}
+		if (dateSelector2.value === "999"){end=allDates.length;}
+		else{end = getIndex(death_headerNames,dateSelector2.value);}
+		
+		if (countrySelector.value === "Choose State"){selectedState="All India";}
+		else{selectedState = countrySelector.value;}
+		getAlldates(start,end);
+		
+		setBubblePlot(selectedState);
 	}
 
-	countrySelector.addEventListener('change', updateCountry, false);
-
-
-		});
+	countrySelector.addEventListener('change', updateplot, false);
+	dateSelector.addEventListener('change', updateplot, false);
+	dateSelector2.addEventListener('change', updateplot, false);
+			});
 
 		Plotly.d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/newcases.csv', function(err, rows_f){
 		var f_headerNames = d3.keys(rows_f[0]);
@@ -587,19 +622,26 @@ function myFunction() {
 
 	var allStates = unpack(rows_f, 'State'),
 		allDates = [],
-		currentStateCount = [];
-
-
-		for (var i = 0 ; i<f_headerNames.length;i++){
-			allDates.push(f_headerNames[i])
+		currentStateCount = [],
+		start=0,
+		end=f_headerNames.length-1;
+		
+		for (var i = start ; i<=end;i++){
+			if (i!=0){allDates.push(f_headerNames[i])}
 		}
 	//window.alert(allDates);
+	function getAlldates(start_id,end_id){
+		allDates = [];
+		for (var i = start ; i<=end;i++){
+			if (i>0){allDates.push(f_headerNames[i])}
+		}
+	};
 
 	  function getStateData(chosenState) {
 		currentStateCount = [];
 		for (var i = 0 ; i < allStates.length ; i++){
 		  if ( allStates[i] === chosenState ) {
-			for (var j = 0; j<allDates.length; j++){
+			for (var j = start; j<=end; j++){
 			currentStateCount.push(rows_f[i][f_headerNames[j]]);
 			//window.alert(currentStateCount)
 			}
@@ -616,11 +658,7 @@ function myFunction() {
 		var trace1 = {
 		  x: allDates,
 		  y: currentStateCount,
-		  mode: 'lines+markers',
-		  marker: {
-			size: 5,
-			opacity: 1
-		  }
+		  type: 'bar'
 		};
 
 		var data = [trace1];
@@ -635,15 +673,40 @@ function myFunction() {
 	var innerContainer = document.querySelector('[data-num="0"'),
 		plotEl = innerContainer.querySelector('.plot'),
 		countrySelector = innerContainer.querySelector('.countrydata');
-
-
-
-	function updateCountry(){
-		setBubblePlot(countrySelector.value);
+	
+		var innerContainer2 = document.querySelector('[data-num="0"'),
+		plotE2 = innerContainer2.querySelector('.plot'),
+		dateSelector = innerContainer2.querySelector('.startDate');
+		
+		var innerContainer3 = document.querySelector('[data-num="0"'),
+		plotE3 = innerContainer3.querySelector('.plot'),
+		dateSelector2 = innerContainer3.querySelector('.endDate');
+	
+	function getIndex(list,check_value){
+		for (var i=0; i<list.length;i++){
+			if (list[i]=== check_value){
+				return i;}
+		
+		}
+	}
+	
+	function updateplot(){
+		if (dateSelector.value === "999"){start=0;}
+		else{start = getIndex(f_headerNames,dateSelector.value);}
+		if (dateSelector2.value === "999"){end=allDates.length;}
+		else{end = getIndex(f_headerNames,dateSelector2.value);}
+		
+		if (countrySelector.value === "Choose State"){selectedState="All India";}
+		else{selectedState = countrySelector.value;}
+		getAlldates(start,end);
+		
+		setBubblePlot(selectedState);
 	}
 
-	countrySelector.addEventListener('change', updateCountry, false);
-
+	countrySelector.addEventListener('change', updateplot, false);
+	dateSelector.addEventListener('change', updateplot, false);
+	dateSelector2.addEventListener('change', updateplot, false);
+	
 		});
 
 		Plotly.d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/Cured%20-%2025_03_2020.csv', function(err, rows_c){
@@ -663,19 +726,27 @@ function myFunction() {
 
 	var allStates = unpack(rows_c, 'State'),
 		allDates = [],
-		currentStateCount = [];
+		currentStateCount = [],
+		start=0,
+		end = c_headerNames.length-1;
 
 
-		for (var i = 0 ; i<c_headerNames.length;i++){
-			allDates.push(c_headerNames[i])
+		for (var i = start ; i<=end;i++){
+			if (i!=0){allDates.push(c_headerNames[i])}
 		}
 	//window.alert(allDates);
+	function getAlldates(start_id,end_id){
+		allDates = [];
+		for (var i = start ; i<=end;i++){
+			if (i>0){allDates.push(c_headerNames[i])}
+		}
+	};
 
 	  function getStateData(chosenState) {
 		currentStateCount = [];
 		for (var i = 0 ; i < allStates.length ; i++){
 		  if ( allStates[i] === chosenState ) {
-			for (var j = 0; j<allDates.length; j++){
+			for (var j = start; j<=end; j++){
 			currentStateCount.push(rows_c[i][c_headerNames[j]]);
 			//window.alert(currentStateCount)
 			}
@@ -712,14 +783,40 @@ function myFunction() {
 	var innerContainer = document.querySelector('[data-num="0"'),
 		plotEl = innerContainer.querySelector('.plot'),
 		countrySelector = innerContainer.querySelector('.countrydata');
+	var innerContainer2 = document.querySelector('[data-num="0"'),
+		plotE2 = innerContainer2.querySelector('.plot'),
+		dateSelector = innerContainer2.querySelector('.startDate');
+	var innerContainer3 = document.querySelector('[data-num="0"'),
+		plotE3 = innerContainer3.querySelector('.plot'),
+		dateSelector2 = innerContainer3.querySelector('.endDate');
+		
+		
+	function getIndex(list,check_value){
+		for (var i=0; i<list.length;i++){
+			if (list[i]=== check_value){
+				return i;}
+		
+		}
+	}
+	
 
-
-
-	function updateCountry(){
-		setBubblePlot(countrySelector.value);
+		function updateplot(){
+		if (dateSelector.value === "999"){start=0;}
+		else{start = getIndex(c_headerNames,dateSelector.value);}
+		if (dateSelector2.value === "999"){end=allDates.length;}
+		else{end = getIndex(c_headerNames,dateSelector2.value);}
+		
+		if (countrySelector.value === "Choose State"){selectedState="All India";}
+		else{selectedState = countrySelector.value;}
+		getAlldates(start,end);
+		
+		setBubblePlot(selectedState);
 	}
 
-	countrySelector.addEventListener('change', updateCountry, false);
+	countrySelector.addEventListener('change', updateplot, false);
+	dateSelector.addEventListener('change', updateplot, false);
+	dateSelector2.addEventListener('change', updateplot, false);
+	
 		});
 
 		Plotly.d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/Indian%20-%2025_03_2020.csv', function(err, rows){
@@ -746,23 +843,32 @@ function myFunction() {
 	var allStates = unpack(rows, 'State'),
 		allDates = [],
 		indiaCount = [],
-		currentStateCount = [];
-
-
-		for (var i = 0 ; i<headerNames.length;i++){
-			allDates.push(headerNames[i])
+		currentStateCount = [],
+		start=0,
+		end = headerNames.length-1;
+	
+	for (var i = start ; i<=end;i++){
+			if (i!=0){allDates.push(headerNames[i])}	
 		}
 	//window.alert(allDates);
-
+	
+	function getAlldates(start_id,end_id){
+		allDates = [];
+		for (var i = start ; i<=end;i++){
+			if (i>0){allDates.push(headerNames[i])}
+		}
+	};
+	//window.alert(allDates);
+		
 	  function getStateData(chosenState) {
 		currentStateCount = [];
 		for (var i = 0 ; i < allStates.length ; i++){
 		  if ( allStates[i] === chosenState ) {
-			for (var j = 0; j<allDates.length; j++)
+			for (var j = start; j<=end; j++)
 
 			currentStateCount.push(rows[i][headerNames[j]]);
 			indiaCount.push(rows[0][headerNames[j]]);
-			//window.alert(currentStateCount)
+			
 			}
 		  }
 		};
@@ -812,7 +918,15 @@ function myFunction() {
 	var innerContainer = document.querySelector('[data-num="0"'),
 		plotEl = innerContainer.querySelector('.plot'),
 		countrySelector = innerContainer.querySelector('.countrydata');
-
+	
+		var innerContainer2 = document.querySelector('[data-num="0"'),
+		plotE2 = innerContainer2.querySelector('.plot'),
+		dateSelector = innerContainer2.querySelector('.startDate');
+		
+		var innerContainer3 = document.querySelector('[data-num="0"'),
+		plotE3 = innerContainer3.querySelector('.plot'),
+		dateSelector2 = innerContainer3.querySelector('.endDate');
+	
 	function assignOptions(textArray, selector) {
 	  for (var i = 0; i < textArray.length;  i++) {
 		  var currentOption = document.createElement('option');
@@ -822,12 +936,34 @@ function myFunction() {
 	}
 
 	assignOptions(allStates, countrySelector);
-
-	function updateCountry(){
-		setBubblePlot(countrySelector.value);
+	assignOptions(allDates, dateSelector);
+	assignOptions(allDates, dateSelector2);
+	
+	function getIndex(list,check_value){
+		for (var i=0; i<list.length;i++){
+			if (list[i]=== check_value){
+				return i;}
+		
+		}
+	}
+	
+	function updateplot(){
+		if (dateSelector.value === "999"){start=0;}
+		else{start = getIndex(headerNames,dateSelector.value);}
+		if (dateSelector2.value === "999"){end=allDates.length;}
+		else{end = getIndex(headerNames,dateSelector2.value);}
+		
+		if (countrySelector.value === "Choose State"){selectedState="All India";}
+		else{selectedState = countrySelector.value;}
+		getAlldates(start,end);
+		
+		setBubblePlot(selectedState);
 	}
 
-	countrySelector.addEventListener('change', updateCountry, false);
+	countrySelector.addEventListener('change', updateplot, false);
+	dateSelector.addEventListener('change', updateplot, false);
+	dateSelector2.addEventListener('change', updateplot, false);
+	
 	});
 			</script>
 
