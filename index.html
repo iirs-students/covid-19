@@ -366,12 +366,12 @@ function myFunction() {
       // https://leafletjs.com/examples/choropleth/
       // Choropleth map style
       function getColor(d) {
-        return d > 180 ? '#800026' :
-            d > 150  ? '#BD0026' :
-            d > 120  ? '#E31A1C' :
-            d > 90  ? '#FC4E2A' :
-            d > 60   ? '#FD8D3C' :
-            d > 30   ? '#FEB24C' :
+        return d > 300 ? '#800026' :
+            d > 250  ? '#BD0026' :
+            d > 200 ? '#E31A1C' :
+            d > 150  ? '#FC4E2A' :
+            d > 100   ? '#FD8D3C' :
+            d > 50   ? '#FEB24C' :
             d == null   ? ' #ffffff00' :
                   '#FFEDA0';
       }
@@ -454,7 +454,7 @@ function myFunction() {
       // Legend
       legend.onAdd = function (map) {
             var div = L.DomUtil.create('div', 'info legend'),
-                grades = [0, 30, 60, 90, 120, 150, 180],
+                grades = [0, 50, 100, 150, 200, 250, 300],
                 labels = [];
 				div.innerHTML += '<h2>Legend</h2><p>Number of Active Cases</p>';
             // loop through our density intervals and generate a label with a colored square for each interval
@@ -495,6 +495,7 @@ function myFunction() {
 			</div>
 
 		<script>
+		
 		var total_count_text = document.getElementById("menutext2");
 
 		var w = screen.width;
