@@ -352,8 +352,9 @@ function myFunction() {
     <script type="text/javascript" src="indiastates.js"></script>
 	<script type="text/javascript" src="phonenumber.js"></script>
     <script>
+	
+		
 		var w = screen.width;
-
 		//window.alert(w);
 		zoom_level = 5;
 		if (w < 800){
@@ -367,12 +368,12 @@ function myFunction() {
       // https://leafletjs.com/examples/choropleth/
       // Choropleth map style
       function getColor(d) {
-        return d > 300 ? '#800026' :
-            d > 250  ? '#BD0026' :
-            d > 200 ? '#E31A1C' :
-            d > 150  ? '#FC4E2A' :
-            d > 100   ? '#FD8D3C' :
-            d > 50   ? '#FEB24C' :
+        return d > 420 ? '#800026' :
+            d > 350  ? '#BD0026' :
+            d > 280 ? '#E31A1C' :
+            d > 210  ? '#FC4E2A' :
+            d > 140   ? '#FD8D3C' :
+            d > 70   ? '#FEB24C' :
             d == null   ? ' #ffffff00' :
                   '#FFEDA0';
       }
@@ -450,7 +451,7 @@ function myFunction() {
       //Layer group
       var baseMaps ={
           "OpenStreetMap":osm,
-					"Mapbox  Dark": dark
+		  "Mapbox  Dark": dark
         };
       var overlayMaps ={
           "Area Boundaries":geojson,
@@ -465,7 +466,7 @@ function myFunction() {
       // Legend
       legend.onAdd = function (map) {
             var div = L.DomUtil.create('div', 'info legend'),
-                grades = [0, 50, 100, 150, 200, 250, 300],
+                grades = [0, 70, 140, 210, 280, 350, 420],
                 labels = [];
 				div.innerHTML += '<h2>Legend</h2><p>Number of Active Cases</p>';
             // loop through our density intervals and generate a label with a colored square for each interval
