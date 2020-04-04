@@ -853,14 +853,10 @@ function myFunction() {
 		Plotly.d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/Indian%20-%2025_03_2020.csv', function(err, rows){
 		
 		var headerNames = d3.keys(rows[0]);
-		//window.alert(headerNames[0]);
+		var last_date = headerNames[headerNames.length-1]
+		//window.alert(last_date);
 		
-		var last_date = null;
-		d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/extra_data.csv', function(error, rows2){
-		var headerNames2 = d3.keys(rows2[0]);
-		window.alert(headerNames2[0]);
-
-		});
+		
 		
 		var last_count = rows[0][last_date];
 		var count_diff = rows[0][last_date]-rows[0][headerNames[headerNames.length-2]];
@@ -1003,6 +999,12 @@ function myFunction() {
 	dateSelector.addEventListener('change', updateplot, false);
 	dateSelector2.addEventListener('change', updateplot, false);
 	
+	});
+	
+	
+	Plotly.d3.csv("https://raw.githubusercontent.com/iirs-students/covid-19/master/extra_data.csv",function(err, r){
+	var rowlist = d3.keys(r);
+	window.alert(rowlist.length);
 	});
 			</script>
 
