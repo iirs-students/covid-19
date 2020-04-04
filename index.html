@@ -858,8 +858,8 @@ function myFunction() {
 		var last_date = null;
 		d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/extra_data.csv', function(error, rows2){
 		var headerNames2 = d3.keys(rows2[0]);
-		window.alert(d3.keys(rows2[0]));
-		last_date=headerNames[0]
+		window.alert(headerNames2[0]);
+
 		});
 		
 		var last_count = rows[0][last_date];
