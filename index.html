@@ -851,9 +851,17 @@ function myFunction() {
 		});
 
 		Plotly.d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/Indian%20-%2025_03_2020.csv', function(err, rows){
+		
 		var headerNames = d3.keys(rows[0]);
 		//window.alert(headerNames[0]);
-		var last_date = headerNames[headerNames.length-1];
+		
+		var last_date = null;
+		d3.csv('https://raw.githubusercontent.com/iirs-students/covid-19/master/extra_data.csv', function(error, rows2){
+		var headerNames2 = d3.keys(rows2[0]);
+		window.alert(d3.keys(rows2[0]));
+		last_date=headerNames[0]
+		});
+		
 		var last_count = rows[0][last_date];
 		var count_diff = rows[0][last_date]-rows[0][headerNames[headerNames.length-2]];
 		//window.alert(count_diff);
