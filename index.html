@@ -10,7 +10,7 @@
 
   gtag('config', 'UA-162447491-1');
 </script>
-
+	<script src="https://d3js.org/d3.v3.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>Coronavirus India Dashboard</title>
@@ -21,8 +21,21 @@
      integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
      crossorigin=""></script>
 	 <script src="https://cdn.plot.ly/plotly-1.2.0.min.js"></script>
-
+	
     <style>
+	.table_div{
+	display:inline-block;}
+	table {
+                border-collapse: collapse;
+                border: 2px black solid;
+                font: 12px sans-serif;
+            }
+
+            td {
+                border: 1px black solid;
+                padding: 5px;
+            }
+	
 	.gif_img{
 	max-height:500px;
 	display: block;
@@ -102,9 +115,10 @@
 			display:inline-block;}
 
         .mapdiv {
-		  margin:auto;
+			
+		  width: 70%;
           height: 800px;
-          display:block;
+          display:inline-block;
           position:relative;
           margin-top: 15px;
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -481,6 +495,30 @@ function myFunction() {
 		map.setMaxBounds(map.getBounds());
         legend.addTo(map);
     </script>
+  </div>
+  <div class="table_div">
+  <table></table>
+   <script type="text/javascript"charset="utf-8">
+            d3.text("https://raw.githubusercontent.com/iirs-students/covid-19/master/Daily.csv", function(data) {
+    var parsedCSV = d3.csv.parseRows(data);
+
+    var container = d3.select("body")
+        .select("table")
+
+    .selectAll("tr")
+        .data(parsedCSV).enter()
+        .append("tr")
+
+    .selectAll("td")
+        .data(function(d) {
+            return d;
+        }).enter()
+        .append("td")
+        .text(function(d) {
+            return d;
+        });
+});
+        </script>
   </div>
 	<div class="chart_div" id="chart">
 		<div class="card" style="padding-top:10px;">
@@ -1006,6 +1044,7 @@ function myFunction() {
 	<div class="card" style="padding-top:10px; margin:auto;">
 	<div style="margin:auto; display:block;"><h3 style="text-align: center;">Spread of COVID-19 in India</h3><img class= "gif_img" src="https://upload.wikimedia.org/wikipedia/commons/9/95/COVID-19_India_Total_Cases_Animated_Map.gif" alt="COVID-19 India Total Cases Animated Map.gif"></div>
 	</div>
+		
 	<button class = "scroll_button" style="right:0" onclick="scroll_to_element('map')">Scroll to Map</button>
 	<button class = "scroll_button" style="left:0" onclick="scroll_to_element('chart')">Scroll to Chart</button>
 <script>
