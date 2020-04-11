@@ -289,7 +289,7 @@ function myFunction() {
   <div class="column mobile_wide" >
     <div class="card">
       <h3 style="margin-bottom:0px">Active Cases</h3>
-		<p style="font-size:15px; margin-top:0px;">Including 66 Foriegn Citizens</p>
+		<p style="font-size:15px; margin-top:0px;">Including 71 Foriegn Citizens</p>
 		<div class="card_div">
 		  <p id="total_active_india" style="font-size:36px; margin:0px;"></p>
 		  <p style="font-size:15px; margin-top:0px;">Total</p>
@@ -368,12 +368,12 @@ function myFunction() {
       // https://leafletjs.com/examples/choropleth/
       // Choropleth map style
       function getColor(d) {
-        return d > 420 ? '#800026' :
-            d > 350  ? '#BD0026' :
-            d > 280 ? '#E31A1C' :
-            d > 210  ? '#FC4E2A' :
-            d > 140   ? '#FD8D3C' :
-            d > 70   ? '#FEB24C' :
+        return d > 690 ? '#800026' :
+            d > 575  ? '#BD0026' :
+            d > 460 ? '#E31A1C' :
+            d > 345  ? '#FC4E2A' :
+            d > 230   ? '#FD8D3C' :
+            d > 115   ? '#FEB24C' :
             d == null   ? ' #ffffff00' :
                   '#FFEDA0';
       }
@@ -466,7 +466,7 @@ function myFunction() {
       // Legend
       legend.onAdd = function (map) {
             var div = L.DomUtil.create('div', 'info legend'),
-                grades = [0, 70, 140, 210, 280, 350, 420],
+                grades = [0, 115, 230, 345, 460, 575, 690],
                 labels = [];
 				div.innerHTML += '<h2>Legend</h2><p>Number of Active Cases</p>';
             // loop through our density intervals and generate a label with a colored square for each interval
